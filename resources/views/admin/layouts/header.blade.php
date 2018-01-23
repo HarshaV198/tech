@@ -31,7 +31,7 @@
 
               <p>
                 {{ Auth::user()->name }} - Web Developer
-                <small>{{ Auth::user()->created_at}}</small>
+                <small>Change Password</small>
               </p>
             </li>
             <!-- Menu Footer-->

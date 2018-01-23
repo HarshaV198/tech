@@ -18,9 +18,9 @@ Auth::routes();
 
 Route::get('/admin/home', 'HomeController@index')->name('home');
 
-Route::get('verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
+Route::get('/verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name('verifyEmailFirst');
 
-Route::get('verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
+Route::get('/verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 
 Route::get('/admin/profile', 'ProfileController@index')->name('profile');
 

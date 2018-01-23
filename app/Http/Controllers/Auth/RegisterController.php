@@ -10,6 +10,8 @@ use Illuminate\Support\Str;
 use Mail;
 use App\Mail\verifyEmail;
 use Session;
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
 
 class RegisterController extends Controller
 {
@@ -67,39 +69,43 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        Session::flash('status', 'Registered! but verify your email to activate your account');
-
         $user = User::create([
             'name' => $data['name'],
             'organization' => $data['organization'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'verifyToken' => Str::random(40),
+            'verify_token' => Str::random(40),
         ]);
-
-        $thisUser = User::findOrFail($user->id);
-        $this->sendEmail($thisUser);
-
-        return $user;
-    }
-
-    public function sendEmail($thisUser){
-        Mail::to($thisUser['email'])->send(new verifyEmail($thisUser));
-    }
-
-    public function verifyEmailFirst() {
-        return view('mails.verifyEmailFirst');
+        
+        if($user){
+            $mail =  Mail::send('mails.sendView', ['user' => $user], function ($message) use($user) {
+                $message->from('harshav198@gmail.com');
+                $message->to($user->email);
+                $message->subject('Verify Email!');
+            });
+        }
     }
 
     public function sendEmailDone($email, $verifyToken) {
 
-        $user = User::where(['email' => $email, 'verifyToken' => $verifyToken])->first();
+        $user = User::where(['email' => $email, 'verify_token' => $verifyToken])->first();
 
         if ($user) {
-            user::where(['email' => $email, 'verifyToken' => $verifyToken])->update(['confirmed' => '1', 'verifyToken' => NULL]);
+            user::where(['email' => $email, 'verify_token' => $verifyToken])->update(['confirmed' => '1', 'verify_token' => NULL]);
             return redirect(route('login'));
         } else {
             return 'user not found';
         }
+    }
+
+    public function register(Request $request)
+    {
+        $this->validator($request->all())->validate();
+
+        event(new Registered($user = $this->create($request->all())));
+
+        // $this->guard()->login($user);
+        $request->session()->flash('success','Please verify your email');
+        return back();
     }
 }
