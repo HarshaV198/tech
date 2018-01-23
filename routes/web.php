@@ -31,21 +31,12 @@ Route::put('/admin/profile/{id}', 'ProfileController@update')->name('profile.upd
 
 Route::get('superadmin/management', 'Superadmin\ManagementController@index')->name('management');
 
-// 
-// Route::group(['middleware' => ['auth']], function() {    
 
-//     Route::get('/admin/home', function () {
-//         return view('admin.home');
-//     });
+Route::group(['middleware' => ['auth']], function() {    
 
-//     Route::get('/home', function () {
-//          return redirect('/admin/home');
-//     });
+    Route::post('/user/change_password','UserController@changePassword');
 
-//     // Route::get('/', function () {
-//     //      return redirect('/admin/home');
-//     // });
-// });
+});
 
 
 

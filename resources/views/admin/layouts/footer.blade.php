@@ -20,7 +20,7 @@
 							</div>
 							<div class="btn-class">
 									<button type="submit" class="btn btn-default">CHANGE</button>
-									<img class="loader-img" src="{{ asset('img/loader.svg') }}" style="height: 40px;display:none"/>
+									{{--  <img class="loader-img" src="{{ asset('img/loader.svg') }}" style="height: 40px;display:none"/>  --}}
 							</div>
 						</form>
 					</div>
@@ -48,6 +48,7 @@
 	<!-- AdminLTE for demo purposes -->
 	<script src="{{ asset('admin/dist/js/demo.js')}}"></script>
 	<script src="{{ asset('js/parsley.min.js')}}"></script>
+	<script src="{{ asset('js/bootstrap-notify.min.js') }}"></script>
 
 	@section('footerSection')
 
