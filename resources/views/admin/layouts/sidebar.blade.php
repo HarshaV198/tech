@@ -16,34 +16,80 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu" data-widget="tree">
         <li class="header">MAIN NAVIGATION</li>
-        <li class="treeview">
-          <a href="#">
-            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="../../index.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
-            <li><a href="../../index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
-          </ul>
+
+        <li>
+          <a href="{{ route('profile') }}"><i class="fa fa-user"></i> <span>My Profile</span></a>
         </li>
-        <li class="treeview active">
-          <a href="#">
-            <i class="fa fa-files-o"></i>
-            <span>Layout Options</span>
-            <span class="pull-right-container">
-              <span class="label label-primary pull-right">4</span>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="top-nav.html"><i class="fa fa-circle-o"></i> Top Navigation</a></li>
-            <li><a href="boxed.html"><i class="fa fa-circle-o"></i> Boxed</a></li>
-            <li><a href="fixed.html"><i class="fa fa-circle-o"></i> Fixed</a></li>
-            <li class="active"><a href="collapsed-sidebar.html"><i class="fa fa-circle-o"></i> Collapsed Sidebar</a>
-            </li>
-          </ul>
-        </li>
+        
+        @if(Auth::user()->role_id == 1)
+          <li>
+            <a href="{{ route('management') }}"><i class="fa fa-users"></i> <span>Staff Users</span></a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-handshake-o"></i> <span>Clients</span></a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-shopping-cart"></i> <span>Process Orders</span></a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a>
+          </li>          
+
+          <li>
+            <a href="#"><i class="fa fa-product-hunt"></i> <span>Products</span></a>
+          </li>
+        @endif
+
+        @if(Auth::user()->role_id == 2)
+          <li>
+            <a href="#"><i class="fa fa-users"></i> <span>Staff Management</span></a>
+          </li>
+
+
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-cog"></i> <span>Settings</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="#"><i class="fa fa-circle-o"></i> Display Boards</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Front Desks</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Global Settings</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> Registration Form</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-exchange"></i> <span>Transactions</span></a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-history"></i> <span>Logs</span></a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-shopping-bag"></i> <span>Store Front</span></a>
+          </li>
+        @endif
+
+        @if(Auth::user()->role_id == 3)
+          <li>
+            <a href="#"><i class="fa fa-key"></i> <span>Server Token</span></a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-check"></i> <span>Issue Token</span></a>
+          </li>
+
+          <li>
+            <a href="#"><i class="fa fa-history"></i> <span>Logs</span></a>
+          </li>
+        @endif
       </ul>
     </section>
     <!-- /.sidebar -->

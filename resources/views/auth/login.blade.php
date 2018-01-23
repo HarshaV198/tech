@@ -8,7 +8,9 @@
                 <div class="panel-heading">Login</div>
 
                 @if (session('status'))
-                    {{ session('status') }}
+                    <div class="alert alert-info">
+                        {{ session('status') }}
+                    </div>                    
                 @endif
 
 

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->string('organization');
             $table->string('email')->unique();
             $table->string('password');
-            $table->boolean('roleId')->default(0);
+            $table->boolean('role_id')->default(3);
             $table->string('verifyToken')->nullable();
             $table->boolean('confirmed')->default(0);
             $table->rememberToken();

@@ -11,7 +11,7 @@
 |
 */
 Route::get('/', function () {
-    return redirect('/admin/home');
+    return view('welcome');
 });
 
 Auth::routes();
@@ -22,8 +22,16 @@ Route::get('verifyEmailFirst', 'Auth\RegisterController@verifyEmailFirst')->name
 
 Route::get('verify/{email}/{verifyToken}', 'Auth\RegisterController@sendEmailDone')->name('sendEmailDone');
 
+Route::get('/admin/profile', 'ProfileController@index')->name('profile');
+
+Route::get('/admin/profile/{id}/edit', 'ProfileController@edit')->name('profile.edit');
+
+Route::put('/admin/profile/{id}', 'ProfileController@update')->name('profile.update');
 
 
+Route::get('superadmin/management', 'Superadmin\ManagementController@index')->name('management');
+
+// 
 // Route::group(['middleware' => ['auth']], function() {    
 
 //     Route::get('/admin/home', function () {

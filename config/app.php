@@ -2,9 +2,6 @@
 
 return [
 
-
-
-
     /*
     |--------------------------------------------------------------------------
     | Application Name
@@ -16,9 +13,13 @@ return [
     |
     */
 
-    
-
     'name' => env('APP_NAME', 'Laravel'),
+
+    'role' => [
+        '1' => 'Super Admin',
+        '2' => 'Admin',
+        '3' => 'Staff',
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -140,12 +141,6 @@ return [
     | this array to grant expanded functionality to your applications.
     |
     */
-
-    'user_roles' => [
-        '1' => 'SuperAdmin',
-        '2' => 'Admin',
-        '3' => 'Staff'
-    ],
 
     'providers' => [
 
