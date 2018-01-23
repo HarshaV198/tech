@@ -56,11 +56,11 @@
 						                  </td>
 
 						                  <td>
-						                  	<form action="{{ route('user.destroy', $user->id) }}" style="display: none">
+						                  	{{-- <form action="{{ route('user.destroy', $user->id) }}" style="display: none">
 						                  		{{ csrf_field() }}
 
 						                  		{{ method_field('DELETE') }}
-						                  	</form>
+						                  	</form> --}}
 
 						                  	<a href="#"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
 						                  </td>

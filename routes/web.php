@@ -31,6 +31,14 @@ Route::put('/admin/profile/{id}', 'ProfileController@update')->name('profile.upd
 
 Route::get('superadmin/management', 'Superadmin\ManagementController@index')->name('management');
 
+Route::get('/admin/displayboard', function (){
+	return view('admin.organization.displayboard');
+});
+
+
+Route::get('/admin/frontdesk', function (){
+	return view('admin.organization.frontdesk');
+});
 // 
 // Route::group(['middleware' => ['auth']], function() {    
 
