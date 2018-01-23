@@ -31,7 +31,7 @@
 
               <p>
                 {{ Auth::user()->name }} - Web Developer
-                <small>Change Password</small>
+                <small data-toggle="modal" data-target=".change-password-modal">Change Password</small>
               </p>
             </li>
             <!-- Menu Footer-->
