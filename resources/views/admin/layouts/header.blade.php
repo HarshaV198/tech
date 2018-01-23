@@ -30,8 +30,8 @@
               <img src="{{ asset("admin/dist/img/user2-160x160.jpg")}}" class="img-circle" alt="User Image">
 
               <p>
-                {{ Auth::user()->name }} - Web Developer
-                <small data-toggle="modal" data-target=".change-password-modal">Change Password</small>
+                {{ Auth::user()->name }}
+                <small style="cursor: pointer" data-toggle="modal" data-target=".change-password-modal">Change Password</small>
               </p>
             </li>
             <!-- Menu Footer-->
