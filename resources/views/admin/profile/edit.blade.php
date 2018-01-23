@@ -72,31 +72,7 @@
 	                                    </span>
 	                                @endif
 				                  </div>
-				                </div>
-
-				                <div class="form-group">
-				                  <label for="oldpassword" class="col-sm-2 control-label">Old Password</label>
-
-				                  <div class="col-sm-10">
-				                    <input type="password" class="form-control" id="oldpassword" placeholder="Old Password">
-				                  </div>
-				                </div>
-
-				                <div class="form-group">
-				                  <label for="newpassword" class="col-sm-2 control-label">New Password</label>
-
-				                  <div class="col-sm-10">
-				                    <input type="password" class="form-control" id="newpassword" placeholder="New Password">
-				                  </div>
-				                </div>
-
-				                <div class="form-group">
-				                  <label for="confirmpassword" class="col-sm-2 control-label">Confirm Password</label>
-
-				                  <div class="col-sm-10">
-				                    <input type="password" class="form-control" id="confirmpassword" placeholder="Confirm Password">
-				                  </div>
-				                </div>	                
+				                </div>                
 			              	</div>
 
 				            <div class="box-footer">

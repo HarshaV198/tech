@@ -25,7 +25,7 @@
 					              <td>{{ Auth::user()->name}}</td>
 					              <td>{{ Auth::user()->organization}}</td>
 					              <td>{{ Auth::user()->email}}</td>
-					              <td></td>
+					              <td>{{ config('app.role')[Auth::user()->role_id] }}</td>
 					              <td>
 					              	<a href="{{ route('profile.edit', Auth::user()->id) }}"><span class="glyphicon glyphicon-edit"></span></a>
 					              </td>
