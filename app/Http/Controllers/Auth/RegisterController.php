@@ -74,7 +74,7 @@ class RegisterController extends Controller
             'organization' => $data['organization'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'verifyToken' => Str::random(40),
+            'verify_token' => Str::random(40),
         ]);
 
         $thisUser = User::findOrFail($user->id);
