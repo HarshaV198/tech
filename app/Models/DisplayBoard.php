@@ -8,12 +8,13 @@ class DisplayBoard extends Model
 {
     protected $table = 'display_board';
 
-    protected $primaryKey = 'id';
+    // protected $primaryKey = 'id';
 
     protected $fillable = [
         'name',
         'description',
-        'status'
+        'status',
+        'organization'
     ];
 
 }

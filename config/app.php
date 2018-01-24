@@ -21,6 +21,11 @@ return [
         '3' => 'Staff',
     ],
 
+    'board_status' => [
+        '1' => 'Active',
+        '2' => 'Inactive'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

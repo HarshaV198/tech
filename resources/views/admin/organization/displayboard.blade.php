@@ -2,7 +2,19 @@
 
 @section('main-content')
 	<style>
-	
+		table{
+			table-layout: fixed;
+		}
+		.modal-title{
+			font-size: 20px;
+			font-weight: 500;
+		}
+		.modal-header .close{
+			font-size: 14px;
+		}
+		button:active,button:focus{
+			outline: none;
+		}
 	</style>
 	<div class="content-wrapper">
 		<section class="content-header">
@@ -28,13 +40,13 @@
 			            </div>
 
 			            <div class="box-body">
-										<div class="col-md-12">
-												<div align="right">
-														<button type="button" data-toggle="modal" data-target="#add_service_Modal" class="btn btn-warning">
-																<i class="glyphicon glyphicon-plus"></i> Add New
-														</button>
-													</div>
-										</div>
+							<div class="col-md-12">
+								<div align="right">
+									<button type="button" data-toggle="modal" data-target="#addBoardModal" class="btn btn-warning">
+											<i class="glyphicon glyphicon-plus"></i> Add Board
+									</button>
+								</div>
+							</div>
 			            </div>
 
 
@@ -49,23 +61,34 @@
 					                  <th colspan="1">Actions</th>
 					                </tr>
 				                </thead>
-				                <tbody>		                	
-					                <tr>
-					                  <td colspan="2">
-															Testong
-														</td>
-					                  <td colspan="4">
-															Testing
-														</td>
-					                  <td colspan="2">
-															Testing
-														</td>
-					                  <td colspan="1">
-					                  	<button class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
-					                  	<button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
-					                  </td>
-					                </tr>
-						           
+				                <tbody>
+									@if(isset($boards) && count($boards))
+									@foreach($boards as $board)
+									<tr>
+										<td colspan="2">
+											@if(isset($board->name) && $board->name)
+											 {{ $board->name }}
+											@endif
+										</td>
+										<td colspan="4">
+											@if(isset($board->description) && $board->description)
+												{{ $board->description }}
+											@endif
+										</td>
+										<td colspan="2">
+											@if(isset($board->status) && $board->status)
+												@if(isset(config('app.board_status')[$board->status]))
+													{{config('app.board_status')[$board->status]}}
+												@endif
+											@endif
+										</td>
+										<td colspan="1">
+											<button class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></button>
+											<button class="btn btn-danger"><i class="glyphicon glyphicon-trash"></i></button>
+										</td>
+									</tr>
+									@endforeach
+									@endif		                	
 				               </tbody>                
 			              	</table>
 			            </div>
@@ -108,32 +131,47 @@
 	    	</div>
 	    </section>
 	</div>
-	<div class="modal fade add-board-modal"  tabindex="-1" role="dialog" data-backdrop="static">
+	<div class="modal fade add-board-modal"  id="addBoardModal"   tabindex="-1" role="dialog" data-backdrop="static">
 		<div class="modal-dialog modal-md" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;">&times;</span><span>CLOSE</span></button>
-							<h6>Change Password</h6>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+							<h6 class="modal-title">Add Board</h6>
 					</div>
 						<div class="modal-body">
-							{{--  <form method="POST" action="{{ url('/user/change_password') }}" data-parsley-validate="" enctype="multipart/form-data">
+							<form method="POST" action="{{ url('/board/create') }}" data-parsley-validate="" enctype="multipart/form-data">
 								{{ csrf_field() }}
 								<div class="form-group">
-									<input type="password" name="old_pwd" placeholder="Enter Current Password" class="form-control" required/>
+									<lable>Name</lable>
+									<input type="text" name="name" class="form-control" required/>
 								</div>
 								<div class="form-group">
-									<input id="pwd" type="password" name="new_pwd" placeholder="Enter New Password" class="form-control"/ required>
+									<lable>Description</lable>
+									<textarea style="max-width: 100%" class="form-control" rows="4" name="description"></textarea>
 								</div>
 								<div class="form-group">
-									<input id="cpwd" data-parsley-equalto-message="Passwords are not matching" data-parsley-equalto="#pwd" type="password" name="confirm_pwd" placeholder="Confirm Password" class="form-control"/ required>
+										<lable>Status</lable>
+										<select class="form-control" name="status">
+											<option value="1">Active</option>
+											<option value="2">Inactive</option>
+										</select>
 								</div>
-								<div class="btn-class">
-										<button type="submit" class="btn btn-default">CHANGE</button>
+								<div class="btn-class" style="margin-top: 25px">
+										<button type="submit" class="btn btn-success">SAVE</button>
 										{{--  <img class="loader-img" src="{{ asset('img/loader.svg') }}" style="height: 40px;display:none"/>  --}}
 								</div>
-							</form>  --}}
+							</form>
 						</div>
 				</div>
 		</div>
 	</div>
+	<script>
+		$(document).ready(function(){
+			console.log('testing');
+			$('form').submit(function(){
+				$(this).find('button[type=submit]').css('pointer-events','none');
+				$(this).find('button[type=submit]').addClass('disabled');
+			});
+		});
+	</script>
 @endsection

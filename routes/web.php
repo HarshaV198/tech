@@ -45,9 +45,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/user/change_password','UserController@changePassword');
 
-    Route::get('/display_board',function(){
-        return view('admin.organization.displayboard');
-    });
+    Route::get('/display_board','BoardController@index');
+
+    Route::post('/board/create','BoardController@store');
 
     Route::get('/front_desk',function(){
         return view('admin.organization.frontdesk');
