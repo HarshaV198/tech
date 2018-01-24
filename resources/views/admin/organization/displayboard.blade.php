@@ -175,6 +175,7 @@
 					<div class="modal-body">
 						<form method="POST" action="{{ url('/board/edit/save') }}" data-parsley-validate="" enctype="multipart/form-data">
 							{{ csrf_field() }}
+							<input type="hidden" name="slug" value=""/>
 							<div class="form-group">
 								<lable>Name</lable>
 								<input type="text" name="name" class="form-control" required/>
@@ -221,6 +222,7 @@
 							editModal.find('input[name="name"]').val(response['data']['name']);
 							editModal.find('textarea').val(response['data']['description']);
 							editModal.find('select').val(response['data']['status']);
+							editModal.find('input[name="slug"]').val(response['data']['id']);
 							editModal.modal('show');
 						}
 					}, error: function () {

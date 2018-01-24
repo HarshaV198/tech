@@ -42,4 +42,18 @@ class BoardController extends Controller
             ]);
         }
     }
+
+    public function update(Request $request){
+        $board = DisplayBoard::where('id',$request->slug)->first();
+        if($board){
+            $board->name = $request->name;
+            $board->description = $request->description;
+            $board->status = $request->status;
+            $board = $board->save();
+            if($board){
+                $request->session()->flash('success','Board updated successfully !');
+                return back();
+            }
+        }
+    }
 }
