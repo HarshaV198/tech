@@ -8,7 +8,12 @@ use App\Models\DisplayBoard;
 class BoardController extends Controller
 {
     public function index(Request $request){
-        $boards = DisplayBoard::orderby('created_at','desc')->get();
+        $boards = DisplayBoard::orderby('created_at','asc')->get();
+
+        if($request->user()->role_id != 1 ){
+            $boards = $boards->where('organization','=',$request->user()->organization);
+        }
+
         return view('admin.organization.displayboard',compact('boards'));
     }
 
