@@ -33,4 +33,8 @@ class BoardController extends Controller
             return back();
         }
     }
+
+    public function editView(Request $request){
+        
+    }
 }

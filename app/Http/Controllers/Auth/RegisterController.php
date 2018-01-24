@@ -84,6 +84,7 @@ class RegisterController extends Controller
                 $message->subject('Verify Email!');
             });
         }
+        Session::flash('success','Please verify your email');
     }
 
     public function sendEmailDone($email, $verifyToken) {
@@ -105,7 +106,7 @@ class RegisterController extends Controller
         event(new Registered($user = $this->create($request->all())));
 
         // $this->guard()->login($user);
-        $request->session()->flash('success','Please verify your email');
+        // $request->session()->flash('success','Please verify your email');
         return back();
     }
 }

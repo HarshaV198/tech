@@ -165,6 +165,40 @@
 				</div>
 		</div>
 	</div>
+	<div class="modal fade add-board-modal"  id="editBoardModal"   tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog modal-md" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+								<h6 class="modal-title">Add Board</h6>
+						</div>
+							<div class="modal-body">
+								<form method="POST" action="{{ url('/board/create') }}" data-parsley-validate="" enctype="multipart/form-data">
+									{{ csrf_field() }}
+									<div class="form-group">
+										<lable>Name</lable>
+										<input type="text" name="name" class="form-control" required/>
+									</div>
+									<div class="form-group">
+										<lable>Description</lable>
+										<textarea style="max-width: 100%" class="form-control" rows="4" name="description"></textarea>
+									</div>
+									<div class="form-group">
+											<lable>Status</lable>
+											<select class="form-control" name="status">
+												<option value="1">Active</option>
+												<option value="2">Inactive</option>
+											</select>
+									</div>
+									<div class="btn-class" style="margin-top: 25px">
+											<button type="submit" class="btn btn-success">SAVE</button>
+											{{--  <img class="loader-img" src="{{ asset('img/loader.svg') }}" style="height: 40px;display:none"/>  --}}
+									</div>
+								</form>
+							</div>
+					</div>
+			</div>
+		</div>
 	<script>
 		$(document).ready(function(){
 			console.log('testing');
@@ -172,6 +206,9 @@
 				$(this).find('button[type=submit]').css('pointer-events','none');
 				$(this).find('button[type=submit]').addClass('disabled');
 			});
+
+			
+
 		});
 	</script>
 @endsection
