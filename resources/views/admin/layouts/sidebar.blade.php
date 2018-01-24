@@ -45,7 +45,7 @@
 
         @if(Auth::user()->role_id == 2)
           <li>
-            <a href="#"><i class="fa fa-users"></i> <span>Staff Management</span></a>
+            <a href="{{ route('organization') }}"><i class="fa fa-users"></i> <span>Staff Management</span></a>
           </li>
 
 

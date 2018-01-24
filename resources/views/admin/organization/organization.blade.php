@@ -8,13 +8,11 @@
 	<div class="content-wrapper">
 		<section class="content-header">
 	      <h1>
-	        Data Tables
-	        <small>advanced tables</small>
+	        List of All Organization Staff
 	      </h1>
 	      <ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	        <li><a href="#">Tables</a></li>
-	        <li class="active">Data tables</li>
+	        <li class="active">Organization Staff</li>
 	      </ol>
 	    </section>
 
@@ -23,7 +21,7 @@
 	    		<div class="col-xs-12">
 	    			<div class="box">
 			            <div class="box-header">
-			              <h3 class="box-title">Data Table With Full Features</h3>
+			              <h3 class="box-title">Organization Management</h3>
 			            </div>
 			            <!-- /.box-header -->
 		            	<div class="box-body">
@@ -40,33 +38,33 @@
 				                </thead>
 				                <tbody>
 
-				                	@foreach ($users as $user)
+				                	@foreach ($staffs as $staff)
 
 						                <tr>
-						                  <td>{{ $user->name }}</td>
+						                  <td>{{ $staff->name }}</td>
 
-						                  <td>{{ $user->email }}</td>
+						                  <td>{{ $staff->email }}</td>
 
-						                  <td>{{ $user->organization }}</td>
+						                  <td>{{ $staff->organization }}</td>
 
-						                  <td>{{ config('app.role')[$user->role_id] }}</td>
+						                  <td>{{ config('app.role')[$staff->role_id] }}</td>
 
 						                  <td>
-						                  	<a href="{{ route('user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
+						                  	<a href="{{ route('staff.edit', $staff->id) }}"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
 						                  </td>
 
 						                  <td>
-						                  	<form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('user.destroy', $user->id) }}" style="display: none">
+						                  	<form id="delete-form-{{ $staff->id }}" method="POST" action="{{ route('staff.destroy', $staff->id) }}" style="display: none">
 						                  		{{ csrf_field() }}
 
 						                  		{{ method_field('DELETE') }}
 						                  	</form>
 
-						                  	<a href="" onclick="event.preventDefault();document.getElementById('delete-form-{{ $user->id }}').submit();"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
+						                  	<a href="" onclick="event.preventDefault();document.getElementById('delete-form-{{ $staff->id }}').submit();"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
 						                  </td>
 						                </tr>
 						            @endforeach
-				               </tbody>                
+				                </tbody>                
 			              	</table>
 			            </div>
 			            <!-- /.box-body -->
