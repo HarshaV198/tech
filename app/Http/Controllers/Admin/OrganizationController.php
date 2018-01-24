@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Superadmin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 use App\Models\User;
 
-class ManagementController extends Controller
+class OrganizationController extends Controller
 {
-
-	/**
+    
+    /**
      * Create a new controller instance.
      *
      * @return void
@@ -19,18 +20,20 @@ class ManagementController extends Controller
         $this->middleware('auth');
     }
 
-    public function index() {
+    public function index(){
 
-        $users = User::all();
+    	$org = Auth::user()->organization;
 
-        return view('admin.superadmin.management', compact('users'));
+    	$staffs = User::where('organization',$org)->get();
+
+    	return view('admin.organization.organization', compact('staffs'));
     }
 
     public function edit($id){
 
-    	$user = User::where('id',$id)->first();
+    	$staff = User::where('id',$id)->first();
 
-    	return view('admin.superadmin.edit', compact('user'));
+    	return view('admin.organization.staffedit', compact('staff'));
     }
 
     public function update(Request $request, $id){
@@ -51,10 +54,10 @@ class ManagementController extends Controller
     	$user->updated_at = date('Y-m-d H:i:s');
     	$user->save();
 
-    	return redirect(route('management'));
+    	return redirect(route('organization'));
     }
 
-    public function destroy($id){
+    public function destroy($id) {
 
     	User::where('id',$id)->delete();
 

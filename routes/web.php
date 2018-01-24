@@ -29,7 +29,32 @@ Route::get('/admin/profile/{id}/edit', 'ProfileController@edit')->name('profile.
 Route::put('/admin/profile/{id}', 'ProfileController@update')->name('profile.update');
 
 
-Route::get('superadmin/management', 'Superadmin\ManagementController@index')->name('management');
+
+// Super Admin Routes
+Route::group(['namespace' => 'Superadmin'], function() {
+
+    Route::get('/superadmin/management', 'ManagementController@index')->name('management');
+
+    Route::get('/superadmin/management/{id}/edit', 'ManagementController@edit')->name('user.edit');
+
+    Route::put('/superadmin/management/{id}', 'ManagementController@update')->name('user.update');
+
+    Route::delete('/superadmin/management/{id}', 'ManagementController@destroy')->name('user.destroy');
+});
+
+
+// Oragnization Admin Routes
+Route::group(['namespace' => 'Admin'], function() {
+
+    Route::get('/organization/staff', 'OrganizationController@index')->name('organization');
+
+    Route::get('/admin/staff/{id}/edit', 'OrganizationController@edit')->name('staff.edit');
+
+    Route::put('/admin/staff/{id}', 'OrganizationController@update')->name('staff.update');
+
+    Route::delete('/admin/staff/{id}', 'OrganizationController@destroy')->name('staff.destroy');
+});
+
 
 
 Route::get('/admin/displayboard', function (){
