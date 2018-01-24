@@ -8,7 +8,7 @@ use App\Models\DisplayBoard;
 class BoardController extends Controller
 {
     public function index(Request $request){
-        $boards = DisplayBoard::orderby('created_at','asc')->get();
+        $boards = DisplayBoard::orderby('created_at','desc')->get();
 
         if($request->user()->role_id != 1 ){
             $boards = $boards->where('organization','=',$request->user()->organization);
@@ -22,7 +22,7 @@ class BoardController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'status' => $request->status,
-            'organization' => 'wism'
+            'organization' => $request->user()->organization
         ]);
         if($display_board){
             $request->session()->flash('success','Board created successfully !');
@@ -35,6 +35,11 @@ class BoardController extends Controller
     }
 
     public function editView(Request $request){
-        
+        $board = DisplayBoard::where('id',$request->slug)->first();
+        if($board){
+            return response()->json([
+                'data' => $board
+            ]);
+        }
     }
 }

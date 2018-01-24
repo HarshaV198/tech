@@ -17,4 +17,8 @@ class DisplayBoard extends Model
         'organization'
     ];
 
+    protected $hidden = [
+        'id','organization'
+    ];
+
 }
