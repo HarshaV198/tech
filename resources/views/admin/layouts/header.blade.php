@@ -22,17 +22,15 @@
         <li class="dropdown user user-menu">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
             <img src="{{ asset('admin/dist/img/user2-160x160.jpg')}}" class="user-image" alt="User Image">
-            <span class="hidden-xs">{{ Auth::user()->name }}</span>
-          </a>
+            <span class="hidden-xs" style="text-transform: capitalize">{{ Auth::user()->name }}</span>
+          </a> 
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
               <img src="{{ asset("admin/dist/img/user2-160x160.jpg")}}" class="img-circle" alt="User Image">
 
-              <p>
+              <p style="text-transform: capitalize">
                 {{ Auth::user()->name }} - {{ config('app.role')[Auth::user()->role_id] }}
-                <small data-toggle="modal" data-target=".change-password-modal">Change Password</small>
-                {{ Auth::user()->name }}
                 <small style="cursor: pointer" data-toggle="modal" data-target=".change-password-modal">Change Password</small>
               </p>
             </li>
