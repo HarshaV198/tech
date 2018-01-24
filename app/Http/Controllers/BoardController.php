@@ -56,4 +56,14 @@ class BoardController extends Controller
             }
         }
     }
+
+    public function delete(Request $request){
+        $board = DisplayBoard::where('id',$request->slug)->first();
+        if($board){
+            $board->delete();
+            return response()->json([
+                'data' => 'Deleted succesfully'
+            ]);
+        }
+    }
 }
