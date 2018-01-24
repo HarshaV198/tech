@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use App\Models\User;
+use Session;
 
 class OrganizationController extends Controller
 {
@@ -54,7 +55,14 @@ class OrganizationController extends Controller
     	$user->updated_at = date('Y-m-d H:i:s');
     	$user->save();
 
-    	return redirect(route('organization'));
+        if($user){
+            Session::flash('success', 'Staff Deatils Updated successfully !');
+            return redirect(route('organization'));
+        }
+        else{
+            Session::flash('error', 'Failed to Updated Staff Deatils try again !');
+            return back();
+        }
     }
 
     public function destroy($id) {

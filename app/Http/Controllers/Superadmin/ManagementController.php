@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Superadmin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Session;
 
 class ManagementController extends Controller
 {
@@ -51,7 +52,14 @@ class ManagementController extends Controller
     	$user->updated_at = date('Y-m-d H:i:s');
     	$user->save();
 
-    	return redirect(route('management'));
+        if($user){
+            Session::flash('success', 'User Deatils Updated successfully !');
+            return redirect(route('management'));
+        }
+        else{
+            Session::flash('error', 'Failed to Updated User Deatils try again !');
+            return back();
+        }    	
     }
 
     public function destroy($id){

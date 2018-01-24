@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Session;
 
 class ProfileController extends Controller
 {   
@@ -50,6 +51,13 @@ class ProfileController extends Controller
     	$user->updated_at = date('Y-m-d H:i:s');
     	$user->save();
 
-    	return redirect(route('profile'));
+        if($user){
+            Session::flash('success', 'Profile changed successfully !');
+            return redirect(route('profile'));
+        }
+        else{
+            Session::flash('error', 'Failed to change Profile try again !');
+            return back();
+        }
     }
 }
