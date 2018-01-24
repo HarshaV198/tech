@@ -76,15 +76,14 @@
 			              	</div>
 
 				            <div class="box-footer">
-				                <button type="submit" class="btn btn-success pull-right">Update</button>
+				                <button type="submit" class="btn btn-success">Update</button>
+				                <a href="{{ route('profile') }}" class="btn btn-warning">Cancel</a>
 				            </div>	              
 			            </form>
 		          </div>
         </div>
 
 	    	</div>
-	    </section>
-
-		
+	    </section>		
 	</div>
 @endsection
