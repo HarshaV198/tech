@@ -12,7 +12,6 @@ class UserController extends Controller
 {
     public function changePassword(Request $request){
         $user = $request->user();
-        return $user;
         if($user){
             if(isset($request->old_pwd)){
                 if(Hash::check($request->old_pwd , $user->password)) {
