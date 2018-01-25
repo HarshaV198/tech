@@ -508,6 +508,37 @@
 				$(this).closest('tr').addClass('delete-block');
 			});
 
+			$(document).on('click','#deleteConfigConfirm',function(e){
+				$(this).css('pointer-events','none');
+				$(this).addClass('disabled');
+				var id = $(this).attr('data-id');
+				var data = {};
+				data.slug = id;
+				$.ajax({
+					url: '/api/config/delete',
+					type: 'POST',
+					data: data,
+					timeout: 30000,
+					success: function (response) {
+						if(response['data']){
+							$('.delete-block').detach();
+							$('.modal').modal('hide');
+							$('#deleteConfirm').css('pointer-events','none');
+							$('#deleteConfirm').removeClass('disabled');
+							setTimeout(function(){
+								$.notify({
+								message: 'Configuration Deleted Successfully'
+							}, {
+								type: 'success'
+							});
+							},500);
+						}
+					}, error: function () {
+
+					}
+				});
+			});
+
 		});
 	</script>
 

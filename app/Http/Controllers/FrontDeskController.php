@@ -52,7 +52,14 @@ class FrontDeskController extends Controller
 
     public function delete(Request $request){
         $frontdesk = FrontDesk::where('id',$request->slug)->first();
-        return $frontdesk;
+        if($frontdesk){
+            $frontdesk = $frontdesk->delete();
+            if($frontdesk ){
+                return response()->json([
+                    'data' => 'Deleted successfully'
+                ]);
+            }
+        }
     }
 
 }
