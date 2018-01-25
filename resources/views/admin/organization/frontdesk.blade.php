@@ -136,10 +136,10 @@
 															@endif
 														</td>
 				                  	<td>
-				                  		<button type="button" class="btn btn-info btn-sm">
+				                  		<button data-id="{{ $frontdesk->id }}" type="button" class="btn btn-info btn-sm edit-config">
 					                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
 					                    </button>
-					                    <button type="button" class="btn btn-danger btn-sm">
+					                    <button data-id="{{ $frontdesk->id }}" type="button" class="btn btn-danger btn-sm delete-config">
 					                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Delete
 					                    </button>
 				                  	</td>
@@ -266,7 +266,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="modal fade add-service-modal"  id="addNewConfiguration"   tabindex="-1" role="dialog" data-backdrop="static">
+	<div class="modal fade add-config-modal"  id="addNewConfiguration"   tabindex="-1" role="dialog" data-backdrop="static">
 		<div class="modal-dialog modal-md" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
@@ -320,6 +320,61 @@
 				</div>
 		</div>
 	</div>
+	<div class="modal fade edit-config-modal"  id="editConfigurationModal"   tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog modal-md" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+								<h6 class="modal-title">Add Frontdesk</h6>
+						</div>
+							<div class="modal-body">
+								<form method="POST" action="{{ url('/frontdesk/edit/save') }}" data-parsley-validate="" enctype="multipart/form-data">
+									{{ csrf_field() }}
+									<input type="hidden" name="slug" value="">
+									<div class="form-group">
+										<lable>Name</lable>
+										<input type="text" name="name" class="form-control" required/>
+									</div>
+									<div class="form-group">
+										<lable>IP Address</lable>
+										<input type="text" name="ip" class="form-control" required/>								</div>
+									<div class="form-group" name="service">
+											<lable>Service</lable>
+											<select class="form-control" required name="service">
+												<option value="" disabled selected></option>
+												@if(isset($services) && count($services))
+													@foreach($services as  $service)
+													<option value="{{ $service->id }}">{{ $service->name }}</option>
+													@endforeach
+												@endif
+											</select>
+									</div>
+									<div class="form-group" name="board">
+											<lable>Display Board</lable>
+											<select class="form-control" required name="board">
+												<option value="" disabled selected></option>
+												@if(isset($boards) && count($boards))
+													@foreach($boards as  $board)
+													<option value="{{ $board->id }}">{{ $board->name }}</option>
+													@endforeach
+												@endif
+											</select>
+									</div>
+									<div class="form-group">
+											<lable>Status</lable>
+											<select class="form-control" name="status"> 
+												<option value="1">Active</option>
+												<option value="2">Inactive</option>
+											</select>
+									</div>
+									<div class="btn-class" style="margin-top: 25px">
+											<button type="submit" class="btn btn-success">SAVE</button>
+									</div>
+								</form>
+							</div>
+					</div>
+			</div>
+		</div>
 	<script>
 		$(document).ready(function(){
 			$('form').submit(function(){
@@ -400,7 +455,31 @@
 				$('tr').removeClass('delete-block');
 			});
 
+			$(document).on('click','.edit-config',function(){
+				var id = $(this).attr('data-id');
+				var data = {};
+				data.slug = id;
+				$.ajax({
+					url: '/api/config/edit/view',
+					type: 'POST',
+					data: data,
+					timeout: 30000,
+					success: function (response) {
+						if(response['data']){
+							var editModal = $('#editConfigurationModal');
+							editModal.find('input[name="name"]').val(response['data']['name']);
+							editModal.find('input[name="ip"]').val(response['data']['ip']);
+							editModal.find('select[name="service"]').val(response['data']['service_id']);
+							editModal.find('select[name="board"]').val(response['data']['board_id']);
+							editModal.find('select[name="status"]').val(response['data']['status']);
+							editModal.find('input[name="slug"]').val(response['data']['id']);
+							editModal.modal('show');
+						}
+					}, error: function () {
 
+					}
+				});
+			});
 		});
 	</script>
 

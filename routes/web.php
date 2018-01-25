@@ -83,6 +83,8 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/service/edit/save','ServiceController@update');
 
     Route::post('/frontdesk/create','FrontDeskController@store');
+    
+    Route::post('/frontdesk/edit/save','FrontDeskController@update');
 
 });
 

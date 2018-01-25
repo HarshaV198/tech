@@ -21,3 +21,4 @@ Route::post('/board/edit/view','BoardController@editView');
 Route::post('/board/delete','BoardController@delete');
 Route::post('/service/edit/view','ServiceController@editView');
 Route::post('/service/delete','ServiceController@delete');
+Route::post('/config/edit/view','FrontDeskController@editView');
