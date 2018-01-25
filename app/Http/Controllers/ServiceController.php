@@ -5,15 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Service;
+use App\Models\FrontDesk;
 
 class ServiceController extends Controller
 {
     public function index(Request $request){
         $services = Service::orderby('created_at','desc')->get();
+        $frontdesks = FrontDesk::orderby('created_at','desc')->get();
         if($request->user()->role_id != 1 ){
             $services = $services->where('organization','=',$request->user()->organization);
-        }
-        return view('admin.organization.frontdesk',compact('services'));
+            $frontdesks = $frontdesks->where('organization','=',$request->user()->organization);
+        }   
+        return view('admin.organization.frontdesk',compact('services','frontdesks'));
     }
 
     public function store(Request $request){

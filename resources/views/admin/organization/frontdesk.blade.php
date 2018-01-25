@@ -107,12 +107,34 @@
 				                  </tr>
 				                </thead>
 				                <tbody>
+												@if(isset($frontdesks) && count($frontdesks))
+													@foreach($frontdesks as $frontdesk)
 				                  <tr>
-				                  	<td></td>
-				                  	<td></td>
-				                  	<td></td>
-				                  	<td></td>
-				                  	<td></td>
+				                  	<td>
+															@if(isset($frontdesk->name) && $frontdesk->name)
+																{{ $frontdesk->name }}
+															@endif
+														</td>
+				                  	<td>
+															@if(isset($frontdesk->ip) && $frontdesk->ip)
+																{{ $frontdesk->ip }}
+															@endif
+														</td>
+				                  	<td>
+															@if(isset($frontdesk->service_id) && $frontdesk->service_id)
+																{{ $frontdesk->service_id }}
+															@endif
+														</td>
+				                  	<td>
+															@if(isset($frontdesk->board_id) && $frontdesk->board_id)
+																{{ $frontdesk->board_id }}
+															@endif
+														</td>
+				                  	<td>
+															@if(isset($frontdesk->status) && $frontdesk->status)
+																{{ $frontdesk->status }}
+															@endif
+														</td>
 				                  	<td>
 				                  		<button type="button" class="btn btn-info btn-sm">
 					                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
@@ -121,7 +143,9 @@
 					                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i> Delete
 					                    </button>
 				                  	</td>
-				                  </tr>
+													</tr>
+													@endforeach()
+												@endif
 				                </tbody>                
 				              </table>             
 				            </div>      
