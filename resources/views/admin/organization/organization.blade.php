@@ -20,6 +20,17 @@
 	    	<div class="row">
 	    		<div class="col-xs-12">
 	    			<div class="box">
+
+						<div class="box-body">
+							<div class="col-md-12">
+								<div align="right">
+
+									<a href="{{ route('staff.create') }}" class="btn btn-warning"> <i class="glyphicon glyphicon-plus"></i> Add Staff</a>
+								</div>
+							</div>
+			            </div>
+
+
 			            <div class="box-header">
 			              <h3 class="box-title">Organization Management</h3>
 			            </div>

@@ -375,7 +375,27 @@
 					</div>
 			</div>
 		</div>
-	<script>
+
+		<div class="modal fade delete-service-modal"  id="deleteConfigModal"   tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog modal-md" role="document">
+				
+				<div class="modal-content">
+					{{--  <form data-parsley-validate="">  --}}
+						<div class="modal-header" style="border-bottom: none;padding-bottom: 0">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+							{{--  <h6 class="modal-title">Edit Board</h6>  --}}
+						</div>
+						<div class="modal-body text-center" style="padding-top: 0">
+							<p style="font-size: 16px">Are you sure you want to delete this configuration?</p>
+							<button id="deleteConfigConfirm" type="submit" class="btn btn-default btn-primary" style="margin-right:10px;font-size: 14px;color: #fff;padding: 6px 15px">YES</button>
+							<button type="button" data-dismiss="modal" class="btn btn-default" style="font-size: 14px;padding: 6px 15px">NO</button>
+						</div>
+					{{--  </form>  --}}
+				</div>
+			</div>
+		</div>
+	
+		<script>
 		$(document).ready(function(){
 			$('form').submit(function(){
 				if($(this).parsley().isValid()){
@@ -451,7 +471,7 @@
 				});
 			});
 
-			$('#deleteServiceModal').on('hidden.bs.modal',function(){
+			$('#deleteServiceModal,#deleteConfigModal').on('hidden.bs.modal',function(){
 				$('tr').removeClass('delete-block');
 			});
 
@@ -480,6 +500,14 @@
 					}
 				});
 			});
+
+			$(document).on('click','.delete-config',function(){
+				var id = $(this).attr('data-id');
+				$('#deleteConfigModal').find('#deleteConfigConfirm').attr('data-id',id);
+				$('#deleteConfigModal').modal('show');
+				$(this).closest('tr').addClass('delete-block');
+			});
+
 		});
 	</script>
 

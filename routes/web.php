@@ -48,6 +48,10 @@ Route::group(['namespace' => 'Admin'], function() {
 
     Route::get('/organization/staff', 'OrganizationController@index')->name('organization');
 
+    Route::get('/admin/staff/create', 'OrganizationController@create')->name('staff.create');
+
+    Route::post('/admin/staff/store', 'OrganizationController@store')->name('staff.store');
+
     Route::get('/admin/staff/{id}/edit', 'OrganizationController@edit')->name('staff.edit');
 
     Route::put('/admin/staff/{id}', 'OrganizationController@update')->name('staff.update');
