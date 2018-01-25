@@ -48,4 +48,14 @@ class ServiceController extends Controller
         }
     }
 
+    public function delete(Request $request){
+        $service = Service::where('id',$request->slug)->first();
+        if($service){
+            $service->delete();
+            return response()->json([
+                'data' => 'Deleted succesfully'
+            ]);
+        }
+    }
+
 }

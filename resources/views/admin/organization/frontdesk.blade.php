@@ -220,7 +220,24 @@
 				</div>
 		</div>
 	</div>
-
+	<div class="modal fade delete-service-modal"  id="deleteServiceModal"   tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-md" role="document">
+			
+			<div class="modal-content">
+				{{--  <form data-parsley-validate="">  --}}
+					<div class="modal-header" style="border-bottom: none;padding-bottom: 0">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+						{{--  <h6 class="modal-title">Edit Board</h6>  --}}
+					</div>
+					<div class="modal-body text-center" style="padding-top: 0">
+						<p style="font-size: 16px">Are you sure you want to delete this Service?</p>
+						<button id="deleteConfirm" type="submit" class="btn btn-default btn-primary" style="margin-right:10px;font-size: 14px;color: #fff;padding: 6px 15px">YES</button>
+						<button type="button" data-dismiss="modal" class="btn btn-default" style="font-size: 14px;padding: 6px 15px">NO</button>
+					</div>
+				{{--  </form>  --}}
+			</div>
+		</div>
+	</div>
 	<script>
 		$(document).ready(function(){
 			$('form').submit(function(){
@@ -230,7 +247,7 @@
 				}
 			});
 
-			$('.modal').on('hidden.bs.modal',function(){
+			$('#addServiceModal,#editServiceModal').on('hidden.bs.modal',function(){
 				$(this).find('form').parsley().reset();
 			});
 
@@ -257,6 +274,48 @@
 
 					}
 				});
+			});
+
+			$(document).on('click','.delete-service',function(){
+				var id = $(this).attr('data-id');
+				$('#deleteServiceModal').find('#deleteConfirm').attr('data-id',id);
+				$('#deleteServiceModal').modal('show');
+				$(this).closest('tr').addClass('delete-block');
+			});
+
+			$(document).on('click','#deleteConfirm',function(e){
+				$(this).css('pointer-events','none');
+				$(this).addClass('disabled');
+				var id = $(this).attr('data-id');
+				var data = {};
+				data.slug = id;
+				$.ajax({
+					url: '/api/service/delete',
+					type: 'POST',
+					data: data,
+					timeout: 30000,
+					success: function (response) {
+						if(response['data']){
+							$('.delete-block').detach();
+							$('.modal').modal('hide');
+							$('#deleteConfirm').css('pointer-events','none');
+							$('#deleteConfirm').removeClass('disabled');
+							setTimeout(function(){
+								$.notify({
+								message: 'Service Deleted Successfully'
+							}, {
+								type: 'success'
+							});
+							},500);
+						}
+					}, error: function () {
+
+					}
+				});
+			});
+
+			$('#deleteServiceModal').on('hidden.bs.modal',function(){
+				$('tr').removeClass('delete-block');
 			});
 
 

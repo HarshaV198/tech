@@ -225,8 +225,10 @@
 	<script>
 		$(document).ready(function(){
 			$('form').submit(function(){
-				$(this).find('button[type=submit]').css('pointer-events','none');
-				$(this).find('button[type=submit]').addClass('disabled');
+				if($(this).parsley().isValid()){
+					$(this).find('button[type=submit]').css('pointer-events','none');
+					$(this).find('button[type=submit]').addClass('disabled');
+				}
 			});
 
 			$(document).on('click','.edit-board',function(){
@@ -264,6 +266,8 @@
 				var id = $(this).attr('data-id');
 				var data = {};
 				data.slug = id;
+				$(this).css('pointer-events','none');
+				$(this).addClass('disabled');
 				$.ajax({
 					url: '/api/board/delete',
 					type: 'POST',
@@ -273,6 +277,8 @@
 						if(response['data']){
 							$('.delete-block').detach();
 							$('.modal').modal('hide');
+							$('#deleteConfirm').css('pointer-events','');
+							$('#deleteConfirm').removeClass('disabled');
 							setTimeout(function(){
 								$.notify({
 								message: 'Board Deleted Successfully'
