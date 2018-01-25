@@ -50,20 +50,35 @@
 			                <th>Token Prefix</th>
 			                <th>Actions</th>
 			              </tr>
-
-			              <tr>                
-			                <td></td>
-			                <td colspan="2"></td>
-			                <td></td>
+										@if(isset($services) && count($services))
+										@foreach($services as $service)
+										<tr>                
 			                <td>
-												<button type="button" class="btn btn-info btn-sm">
+												@if(isset($service->name) && $service->name)
+													{{ $service->name }}
+												@endif
+											</td>
+			                <td colspan="2">
+												@if(isset($service->description) && $service->description)
+													{{ $service->description }}
+												@endif
+											</td>
+			                <td>
+												@if(isset($service->token_prefix) && $service->token_prefix)
+													{{ $service->token_prefix }}
+												@endif
+											</td>
+			                <td>
+												<button data-id="{{ $service->id }}" type="button" class="btn btn-info btn-sm edit-service">
 													<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
 											</button>
-											<button type="button" class="btn btn-danger btn-sm">
+											<button data-id="{{ $service->id }}" type="button" class="btn btn-danger btn-sm delete-service">
 													<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Delete
 											</button>
 			                </td>
-			              </tr>
+										</tr>
+										@endforeach
+										@endif
 			            </table>
 			          </div><!-- /.box-body -->
 			        </div><!-- /.box -->
