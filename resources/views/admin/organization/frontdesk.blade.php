@@ -1,6 +1,21 @@
 @extends('admin/layouts/app')
 
 @section('main-content')
+	<style>
+		table{
+			table-layout: fixed;
+		}
+		.modal-title{
+			font-size: 20px;
+			font-weight: 500;
+		}
+		.modal-header .close{
+			font-size: 14px;
+		}
+		button:active,button:focus{
+			outline: none;
+		}
+	</style>
 	<div class="content-wrapper">
 		<section class="content-header">
 	      <h1>
@@ -23,7 +38,7 @@
 			          <div class="box-body">
 
 			            <div align="right">
-			            	<button type="button" data-toggle="modal" data-target="#add_service_Modal" class="btn btn-warning">
+			            	<button type="button" data-toggle="modal" data-target="#addServiceModal" class="btn btn-warning">
 			             	 	<i class="glyphicon glyphicon-plus"></i> Add New
 			            	</button>
 			            </div> <br>
@@ -31,23 +46,22 @@
 			            <table class="table table-bordered">
 			              <tr>
 			                <th>Name</th>
-			                <th>Description</th>
+			                <th colspan="2">Description</th>
 			                <th>Token Prefix</th>
 			                <th>Actions</th>
 			              </tr>
 
 			              <tr>                
 			                <td></td>
-			                <td></td>
+			                <td colspan="2"></td>
 			                <td></td>
 			                <td>
-			                	<button type="button" class="btn btn-primary">
-			                		<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
-			                	</button>
-
-			                  <button type="button" class="btn btn-danger">
-			                		<i class="fa fa-trash-o" aria-hidden="true"></i> Delete
-			                	</button>	
+												<button type="button" class="btn btn-info btn-sm">
+													<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+											</button>
+											<button type="button" class="btn btn-danger btn-sm">
+													<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Delete
+											</button>
 			                </td>
 			              </tr>
 			            </table>
@@ -60,7 +74,7 @@
 				          <div class="box-header">
 				            <h3 class="box-title">Frontdesk Configuration:</h3><br><br>
 				          </div>
-				            <div class="box-body table-responsive no-padding">
+				            <div class="box-body table-responsive">
 
 				              <table class="table table-bordered">
 				                <thead>
@@ -130,4 +144,44 @@
 	    	</div>
 	    </section>
 	</div>
+	<div class="modal fade add-service-modal"  id="addServiceModal"   tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-md" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+							<h6 class="modal-title">Add Service</h6>
+					</div>
+						<div class="modal-body">
+							<form method="POST" action="{{ url('/service/create') }}" data-parsley-validate="" enctype="multipart/form-data">
+								{{ csrf_field() }}
+								<div class="form-group">
+									<lable>Name</lable>
+									<input type="text" name="name" class="form-control" required/>
+								</div>
+								<div class="form-group">
+									<lable>Description</lable>
+									<textarea style="max-width: 100%" class="form-control" rows="4" name="description"></textarea>
+								</div>
+								<div class="form-group">
+										<lable>Token Prefix</lable>
+										<input type="text" class="form-control" name="token_prefix"/>
+								</div>
+								<div class="btn-class" style="margin-top: 25px">
+										<button type="submit" class="btn btn-success">SAVE</button>
+								</div>
+							</form>
+						</div>
+				</div>
+		</div>
+	</div>
+
+	<script>
+		$(docuement).ready(function(){
+			$('form').submit(function(){
+				$(this).find('button[type=submit]').css('pointer-events','none');
+				$(this).find('button[type=submit]').addClass('disabled');
+			});
+		});
+	</script>
+
 @endsection
