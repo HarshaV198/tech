@@ -179,7 +179,7 @@
 								</div>
 								<div class="form-group">
 										<lable>Token Prefix</lable>
-										<input type="text" class="form-control" name="token_prefix"/>
+										<input type="text" class="form-control" name="token_prefix" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-length="[1,1]" data-parsley-pattern-message="Only alphabet allowed" data-parsley-length-message="Only one character allowed" required/>
 								</div>
 								<div class="btn-class" style="margin-top: 25px">
 										<button type="submit" class="btn btn-success">SAVE</button>

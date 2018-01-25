@@ -15,4 +15,15 @@ class ServiceController extends Controller
         }
         return view('admin.organization.frontdesk',compact('services'));
     }
+
+    public function store(Request $request){
+        $service = Service::create([
+            'name' => $request->name,
+            'description' => $request->description,
+            'token_prefix' => $request->token_prefix,
+            'organization' => $request->user()->organization
+        ]);
+        $request->session()->flash('success','Service created successfully !');
+        return back();
+    }
 }
