@@ -36,6 +36,7 @@
 
           <li>
             <a href="#"><i class="fa fa-cog"></i> <span>Settings</span></a>
+
           </li>          
 
           <li>
@@ -57,7 +58,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Display Boards</a></li>
+              <li><a href="{{ url('/display_board') }}"><i class="fa fa-circle-o"></i> Display Boards</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Front Desks</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Global Settings</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Registration Form</a></li>

@@ -95,7 +95,7 @@
 			            <!-- /.box-body -->
 	          		</div>
 
-	          		<div class="col-xs-6">
+	          		<div class="col-xs-6" style="display: none">
 									<div class="row">
 											<div class="box">
 													<div class="box-header">
