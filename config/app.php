@@ -26,6 +26,11 @@ return [
         '2' => 'Inactive'
     ],
 
+    'front_desk_status' => [
+        '1' => 'Active',
+        '2' => 'Inactive'
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

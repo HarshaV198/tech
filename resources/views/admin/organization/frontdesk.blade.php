@@ -122,17 +122,17 @@
 														</td>
 				                  	<td>
 															@if(isset($frontdesk->service_id) && $frontdesk->service_id)
-																{{ $frontdesk->service_id }}
+																{{ $frontdesk->service->name }}
 															@endif
 														</td>
 				                  	<td>
 															@if(isset($frontdesk->board_id) && $frontdesk->board_id)
-																{{ $frontdesk->board_id }}
+																{{ $frontdesk->board->name }}
 															@endif
 														</td>
 				                  	<td>
 															@if(isset($frontdesk->status) && $frontdesk->status)
-																{{ $frontdesk->status }}
+																{{ config('app.front_desk_status')[$frontdesk->status] }}
 															@endif
 														</td>
 				                  	<td>
@@ -274,7 +274,7 @@
 							<h6 class="modal-title">Add Frontdesk</h6>
 					</div>
 						<div class="modal-body">
-							<form method="POST" action="{{ url('/service/create') }}" data-parsley-validate="" enctype="multipart/form-data">
+							<form method="POST" action="{{ url('/frontdesk/create') }}" data-parsley-validate="" enctype="multipart/form-data">
 								{{ csrf_field() }}
 								<div class="form-group">
 									<lable>Name</lable>
@@ -285,19 +285,29 @@
 									<input type="text" name="ip" class="form-control" required/>								</div>
 								<div class="form-group" name="service">
 										<lable>Service</lable>
-										<select class="form-control">
-											<option value="" disabled>Select Service</option>
+										<select class="form-control" required name="service">
+											<option value="" disabled selected></option>
+											@if(isset($services) && count($services))
+												@foreach($services as  $service)
+												<option value="{{ $service->id }}">{{ $service->name }}</option>
+												@endforeach
+											@endif
 										</select>
 								</div>
 								<div class="form-group" name="board">
 										<lable>Display Board</lable>
-										<select class="form-control">
-											<option value="" disabled>Select Board</option>
+										<select class="form-control" required name="board">
+											<option value="" disabled selected></option>
+											@if(isset($boards) && count($boards))
+												@foreach($boards as  $board)
+												<option value="{{ $board->id }}">{{ $board->name }}</option>
+												@endforeach
+											@endif
 										</select>
 								</div>
-								<div class="form-group" name="status">
+								<div class="form-group">
 										<lable>Status</lable>
-										<select class="form-control">
+										<select class="form-control" name="status"> 
 											<option value="1">Active</option>
 											<option value="2">Inactive</option>
 										</select>

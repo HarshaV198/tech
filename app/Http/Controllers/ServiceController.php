@@ -6,17 +6,20 @@ use Illuminate\Http\Request;
 
 use App\Models\Service;
 use App\Models\FrontDesk;
+use App\Models\DisplayBoard;
 
 class ServiceController extends Controller
 {
     public function index(Request $request){
         $services = Service::orderby('created_at','desc')->get();
         $frontdesks = FrontDesk::orderby('created_at','desc')->get();
+        $boards = DisplayBoard::orderby('created_at','desc')->get();
         if($request->user()->role_id != 1 ){
             $services = $services->where('organization','=',$request->user()->organization);
             $frontdesks = $frontdesks->where('organization','=',$request->user()->organization);
+            $boards = $boards->where('organization','=',$request->user()->organization);
         }   
-        return view('admin.organization.frontdesk',compact('services','frontdesks'));
+        return view('admin.organization.frontdesk',compact('services','frontdesks','boards'));
     }
 
     public function store(Request $request){

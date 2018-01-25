@@ -16,6 +16,16 @@ class FrontDesk extends Model
         'ip',
         'service_id',
         'board_id',
-        'status'
+        'status',
+        'organization'
     ];
+
+    public function service(){
+		return $this->belongsTo('App\Models\Service');
+    }
+    
+    public function board(){
+        return $this->belongsTo('App\Models\DisplayBoard','board_id','id');
+    }
+
 }
