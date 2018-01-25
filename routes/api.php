@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::post('/board/edit/view','BoardController@editView');
 Route::post('/board/delete','BoardController@delete');
+Route::post('/service/edit/view','ServiceController@editView');

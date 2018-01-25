@@ -189,6 +189,37 @@
 				</div>
 		</div>
 	</div>
+	<div class="modal fade edit-service-modal"  id="editServiceModal"   tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-md" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+							<h6 class="modal-title">Add Service</h6>
+					</div>
+						<div class="modal-body">
+							<form method="POST" action="{{ url('/service/edit/save') }}" data-parsley-validate="" enctype="multipart/form-data">
+								{{ csrf_field() }}
+								<input type="hidden" name="slug" value="">
+								<div class="form-group">
+									<lable>Name</lable>
+									<input type="text" name="name" class="form-control" required/>
+								</div>
+								<div class="form-group">
+									<lable>Description</lable>
+									<textarea style="max-width: 100%" class="form-control" rows="4" name="description"></textarea>
+								</div>
+								<div class="form-group">
+										<lable>Token Prefix</lable>
+										<input type="text" class="form-control" name="token_prefix" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-length="[1,1]" data-parsley-pattern-message="Only alphabet allowed" data-parsley-length-message="Only one character allowed" required/>
+								</div>
+								<div class="btn-class" style="margin-top: 25px">
+										<button type="submit" class="btn btn-success">SAVE</button>
+								</div>
+							</form>
+						</div>
+				</div>
+		</div>
+	</div>
 
 	<script>
 		$(document).ready(function(){
@@ -202,6 +233,32 @@
 			$('.modal').on('hidden.bs.modal',function(){
 				$(this).find('form').parsley().reset();
 			});
+
+			
+			$(document).on('click','.edit-service',function(){
+				var id = $(this).attr('data-id');
+				var data = {};
+				data.slug = id;
+				$.ajax({
+					url: '/api/service/edit/view',
+					type: 'POST',
+					data: data,
+					timeout: 30000,
+					success: function (response) {
+						if(response['data']){
+							var editModal = $('#editServiceModal');
+							editModal.find('input[name="name"]').val(response['data']['name']);
+							editModal.find('textarea').val(response['data']['description']);
+							editModal.find('input[name="token_prefix"]').val(response['data']['token_prefix']);
+							editModal.find('input[name="slug"]').val(response['data']['id']);
+							editModal.modal('show');
+						}
+					}, error: function () {
+
+					}
+				});
+			});
+
 
 		});
 	</script>

@@ -26,4 +26,26 @@ class ServiceController extends Controller
         $request->session()->flash('success','Service created successfully !');
         return back();
     }
+
+    public function editView(Request $request){
+        $service = Service::where('id',$request->slug)->first();
+        return response()->json([
+            'data' => $service
+        ]);
+    }
+
+    public function update(Request $request){
+        $service = Service::where('id',$request->slug)->first();
+        if($service){
+            $service->name = $request->name;
+            $service->description = $request->description;
+            $service->token_prefix = $request->token_prefix;
+            $service = $service->save();
+            if($service){
+                $request->session()->flash('success','Service updated successfully !');
+                return back();
+            }
+        }
+    }
+
 }
