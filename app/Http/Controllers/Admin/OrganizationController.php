@@ -30,6 +30,41 @@ class OrganizationController extends Controller
     	return view('admin.organization.organization', compact('staffs'));
     }
 
+
+    public function create(){
+
+        return view('admin.organization.staffcreat');
+    }
+
+
+    public function store(Request $request){
+
+        $this->validate($request, [
+            
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:6|confirmed',
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'organization' => Auth::user()->organization,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+        ]);
+
+        if($user){
+            $request->session()->flash('success','Staff created successfully !');
+            return redirect(route('organization'));
+        }
+        else{
+            $request->session()->flash('error','Failed create Staff try again !');
+            return back();
+        }
+    }
+
+
+
     public function edit($id){
 
     	$staff = User::where('id',$id)->first();

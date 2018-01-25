@@ -79,7 +79,7 @@ class RegisterController extends Controller
         
         if($user){
             $mail =  Mail::send('mails.sendView', ['user' => $user], function ($message) use($user) {
-                $message->from('harshav198@gmail.com');
+                $message->from('wism@gmail.com');
                 $message->to($user->email);
                 $message->subject('Verify Email!');
             });
