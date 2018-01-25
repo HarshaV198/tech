@@ -90,13 +90,17 @@
 				            <h3 class="box-title">Frontdesk Configuration:</h3><br><br>
 				          </div>
 				            <div class="box-body table-responsive">
-
+											<div align="right">
+												<button type="button" data-toggle="modal" data-target="#addNewConfiguration" class="btn btn-warning">
+														<i class="glyphicon glyphicon-plus"></i> Add New
+												</button>
+											</div><br>
 				              <table class="table table-bordered">
 				                <thead>
 				                  <tr>
 				                    <th>Name</th>
 				                    <th>IP Address</th>
-				                    <th>Service Description</th>
+				                    <th>Service</th>
 				                    <th>Display Board</th>
 				                    <th>Status</th>
 				                    <th>Actions</th>
@@ -126,7 +130,7 @@
 				        <!-- /.box -->  
 				    </div>
 
-	          		<div class="col-xs-6">
+	          		<div class="col-xs-6" style="display: none">
 				        <div class="box">
 					        <div class="box-header">
 					            <h3 class="box-title">Audit Log:</h3><br><br>
@@ -236,6 +240,50 @@
 					</div>
 				{{--  </form>  --}}
 			</div>
+		</div>
+	</div>
+	<div class="modal fade add-service-modal"  id="addNewConfiguration"   tabindex="-1" role="dialog" data-backdrop="static">
+		<div class="modal-dialog modal-md" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+							<h6 class="modal-title">Add Frontdesk</h6>
+					</div>
+						<div class="modal-body">
+							<form method="POST" action="{{ url('/service/create') }}" data-parsley-validate="" enctype="multipart/form-data">
+								{{ csrf_field() }}
+								<div class="form-group">
+									<lable>Name</lable>
+									<input type="text" name="name" class="form-control" required/>
+								</div>
+								<div class="form-group">
+									<lable>IP Address</lable>
+									<input type="text" name="ip" class="form-control" required/>								</div>
+								<div class="form-group" name="service">
+										<lable>Service</lable>
+										<select class="form-control">
+											<option value="" disabled>Select Service</option>
+										</select>
+								</div>
+								<div class="form-group" name="board">
+										<lable>Display Board</lable>
+										<select class="form-control">
+											<option value="" disabled>Select Board</option>
+										</select>
+								</div>
+								<div class="form-group" name="status">
+										<lable>Status</lable>
+										<select class="form-control">
+											<option value="1">Active</option>
+											<option value="2">Inactive</option>
+										</select>
+								</div>
+								<div class="btn-class" style="margin-top: 25px">
+										<button type="submit" class="btn btn-success">SAVE</button>
+								</div>
+							</form>
+						</div>
+				</div>
 		</div>
 	</div>
 	<script>
