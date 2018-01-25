@@ -191,11 +191,18 @@
 	</div>
 
 	<script>
-		$(docuement).ready(function(){
+		$(document).ready(function(){
 			$('form').submit(function(){
-				$(this).find('button[type=submit]').css('pointer-events','none');
-				$(this).find('button[type=submit]').addClass('disabled');
+				if($(this).parsley().isValid()){
+					$(this).find('button[type=submit]').css('pointer-events','none');
+					$(this).find('button[type=submit]').addClass('disabled');
+				}
 			});
+
+			$('.modal').on('hidden.bs.modal',function(){
+				$(this).find('form').parsley().reset();
+			});
+
 		});
 	</script>
 
