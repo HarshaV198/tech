@@ -76,7 +76,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('//board/edit/save','BoardController@update');
 
-    Route::get('/front_desk',function(){
+    Route::get('/frontdesk',function(){
         return view('admin.organization.frontdesk');
     });
 

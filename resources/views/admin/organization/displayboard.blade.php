@@ -56,9 +56,9 @@
 				                <thead>
 					                <tr>
 					                  <th colspan="2">Name</th>
-					                  <th colspan="4">Description</th>
+					                  <th colspan="2">Description</th>
 					                  <th colspan="2">Status</th>
-					                  <th colspan="1">Actions</th>
+					                  <th colspan="2">Actions</th>
 					                </tr>
 				                </thead>
 				                <tbody>
@@ -70,7 +70,7 @@
 											 {{ $board->name }}
 											@endif
 										</td>
-										<td colspan="4">
+										<td colspan="2">
 											@if(isset($board->description) && $board->description)
 												{{ $board->description }}
 											@endif
@@ -82,9 +82,15 @@
 												@endif
 											@endif
 										</td>
-										<td colspan="1">
-											<button data-id="{{ $board->id }}" class="btn btn-primary edit-board"><i class="glyphicon glyphicon-pencil"></i></button>
-											<button data-id="{{ $board->id }}" class="btn btn-danger delete-board"><i class="glyphicon glyphicon-trash"></i></button>
+										<td colspan="2">
+											{{--  <button data-id="{{ $board->id }}" class="btn btn-primary edit-board"><i class="glyphicon glyphicon-pencil"></i></button>
+											<button data-id="{{ $board->id }}" class="btn btn-danger delete-board"><i class="glyphicon glyphicon-trash"></i></button>  --}}
+											<button data-id="{{ $board->id }}" type="button" class="btn btn-info btn-sm edit-board">
+												<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit
+											</button>
+											<button data-id="{{ $board->id }}" type="button" class="btn btn-danger btn-sm delete-board">
+												<i class="fa fa-pencil-square-o" aria-hidden="true"></i> Delete
+											</button>
 										</td>
 									</tr>
 									@endforeach
