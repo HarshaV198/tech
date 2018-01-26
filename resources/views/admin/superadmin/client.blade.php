@@ -40,7 +40,7 @@
 
 				                	@foreach ($users as $user)
 
-				                		@if ($user->organization == 'wism')
+				                		@if ($user->organization !== 'wism')
 
 						                <tr>
 						                  <td>{{ $user->name }}</td>
@@ -67,7 +67,7 @@
 						                </tr>
 						                @endif
 						            @endforeach
-				               </tbody>                
+				                </tbody>                
 			              	</table>
 			            </div>
 			            <!-- /.box-body -->

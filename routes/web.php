@@ -40,6 +40,8 @@ Route::group(['namespace' => 'Superadmin'], function() {
     Route::put('/superadmin/management/{id}', 'ManagementController@update')->name('user.update');
 
     Route::delete('/superadmin/management/{id}', 'ManagementController@destroy')->name('user.destroy');
+
+    Route::get('/superadmin/clients', 'ClientController@index')->name('client');
 });
 
 
@@ -61,9 +63,9 @@ Route::group(['namespace' => 'Admin'], function() {
 
 
 
-Route::get('/admin/displayboard', function (){
-	return view('admin.organization.displayboard');
-});
+// Route::get('/superadmin/clients', function (){
+// 	return view('admin.superadmin.client');
+// });
 
 
 Route::get('/admin/frontdesk', function (){

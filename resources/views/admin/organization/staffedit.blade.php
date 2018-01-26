@@ -82,23 +82,6 @@
 					                  		<option value="2">Admin</option>
 					                  		<option value="3">Staff</option>
 					                  	</select>
-
-
-					                  	{{-- <select id="role" name="role" class="form-control">
-					                  		@foreach(config('app.role') as $key => $value)
-											    <option value="{{ $key }}">{{ $value }}</option>
-											@endforeach
-					                  	</select> --}}
-
-
-
-					                  	{{-- config('app.role')[$staff->role_id] --}}
-
-
-
-
-
-
 				                  	</div>
 				                </div>
 			              	</div>

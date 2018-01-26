@@ -27,7 +27,7 @@
           </li>
 
           <li>
-            <a href="#"><i class="fa fa-handshake-o"></i> <span>Clients</span></a>
+            <a href="{{ route('client') }}"><i class="fa fa-handshake-o"></i> <span>Clients</span></a>
           </li>
 
           <li>
