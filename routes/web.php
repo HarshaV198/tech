@@ -93,6 +93,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 });
 
+
 Route::group(['namespace' => 'Staff'], function(){
 
     Route::get('/staff/serve_token', 'ServeTokenController@index')->name('servetoken');
