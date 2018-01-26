@@ -60,7 +60,7 @@
             <ul class="treeview-menu">
               <li><a href="{{ url('/display_board') }}"><i class="fa fa-circle-o"></i> Display Boards</a></li>
               <li><a href="{{ url('/frontdesk') }}"><i class="fa fa-circle-o"></i> Front Desks</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Global Settings</a></li>
+              <li><a href="{{ url('/global_settings') }}"><i class="fa fa-circle-o"></i> Global Settings</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> Registration Form</a></li>
             </ul>
           </li>
