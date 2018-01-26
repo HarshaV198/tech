@@ -8,7 +8,7 @@
 	<div class="content-wrapper">
 		<section class="content-header">
 	      <h1>
-	        Wism User Management
+	        Wism Clients Management
 	      </h1>
 	      <ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -52,11 +52,11 @@
 						                  <td>{{ config('app.role')[$user->role_id] }}</td>
 
 						                  <td>
-						                  	<a href="{{ route('user.edit', $user->id) }}"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
+						                  	<a href="{{ route('client.edit', $user->id) }}"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
 						                  </td>
 
 						                  <td>
-						                  	<form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('user.destroy', $user->id) }}" style="display: none">
+						                  	<form id="delete-form-{{ $user->id }}" method="POST" action="{{ route('client.destroy', $user->id) }}" style="display: none">
 						                  		{{ csrf_field() }}
 
 						                  		{{ method_field('DELETE') }}

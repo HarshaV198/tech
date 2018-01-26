@@ -42,6 +42,12 @@ Route::group(['namespace' => 'Superadmin'], function() {
     Route::delete('/superadmin/management/{id}', 'ManagementController@destroy')->name('user.destroy');
 
     Route::get('/superadmin/clients', 'ClientController@index')->name('client');
+
+    Route::get('/superadmin/client/{id}/edit', 'ClientController@edit')->name('client.edit'); 
+
+    Route::put('/superadmin/client/{id}', 'ClientController@update')->name('client.update');
+
+    Route::delete('/superadmin/client/{id}', 'ClientController@destroy')->name('client.destroy');
 });
 
 
@@ -61,16 +67,6 @@ Route::group(['namespace' => 'Admin'], function() {
     Route::delete('/admin/staff/{id}', 'OrganizationController@destroy')->name('staff.destroy');
 });
 
-
-
-// Route::get('/superadmin/clients', function (){
-// 	return view('admin.superadmin.client');
-// });
-
-
-Route::get('/admin/frontdesk', function (){
-	return view('admin.organization.frontdesk');
-});
 
 Route::group(['middleware' => ['auth']], function() {    
 
