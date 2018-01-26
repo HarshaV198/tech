@@ -10,7 +10,7 @@
 		  </h1>
 		  <ol class="breadcrumb">
 		    <li><a href="/about"><i class="fa fa-dashboard"></i> Home</a></li>
-	      	<li><a href="#"><i class="fa fa-user-circle"></i>Issue Token</a></li>
+	      	<li><a href="#"></i>Issue Token</a></li>
 		  </ol>
 		</section>
 
