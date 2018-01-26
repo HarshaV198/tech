@@ -6,12 +6,12 @@
 
 		<section class="content-header">
 	      <h1>
-	        Edit Staff User
+	        Edit Client
 	      </h1>
 	      <ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	        <li><a href="{{ route('client')}}">Staff Users</a></li>
-	        <li class="active">Edit Profile</li>
+	        <li><a href="{{ route('client')}}">Clients</a></li>
+	        <li class="active">Edit Client</li>
 	      </ol>
 	    </section>
 
@@ -21,7 +21,7 @@
 	    		<div class="col-md-12">
 		          	<div class="box box-info">
 			            <div class="box-header with-border">
-			              <h3 class="box-title">Staff User Profile</h3>
+			              <h3 class="box-title">Client Profile</h3>
 			            </div>
 			            
 			            <form class="form-horizontal" action="{{ route('client.update',$user->id) }}" method="POST">
@@ -79,9 +79,8 @@
 
 				                  	<div class="col-sm-10">
 				                     	<select id="role" name="role" class="form-control">
-					                  		<option value="1">Super Admin</option>
-					                  		<option value="2">Admin</option>
-					                  		<option value="3">Staff</option>
+					                  		<option value="2">Staff</option>
+					                  		<option value="3">Admin</option>
 					                  	</select>
 				                  	</div>
 				                </div>

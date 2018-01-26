@@ -12,7 +12,7 @@
 	      </h1>
 	      <ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	        <li class="active">Staff Users</li>
+	        <li class="active">Clients</li>
 	      </ol>
 	    </section>
 
@@ -21,7 +21,7 @@
 	    		<div class="col-xs-12">
 	    			<div class="box">
 			            <div class="box-header">
-			              <h3 class="box-title">Organization Users</h3>
+			              <h3 class="box-title">Organization Clients</h3>
 			            </div>
 			            <!-- /.box-header -->
 		            	<div class="box-body">
