@@ -76,7 +76,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/board/create','BoardController@store');
 
-    Route::post('/board/edit/save','BoardController@update');
+    Route::post('//board/edit/save','BoardController@update');
 
     Route::get('/frontdesk','ServiceController@index');
 
@@ -89,12 +89,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/frontdesk/edit/save','FrontDeskController@update');
 });
 
-// Oraganization staff routes
-Route::group(['namespace' => 'Staff'], function() {
-
-    Route::get('/staff/serve_token', 'ServeTokenController@index');
-
-    Route::get('/staff/issue_token', 'IssueTokenController@index');
+Route::get('/staff/serve_token', function(){
+    return view('admin.staff.servetoken');
 });
 
+Route::get('/staff/issue_token', function(){
+    return view('admin.staff.issuetoken');
+});
 

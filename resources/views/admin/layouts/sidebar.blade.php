@@ -80,11 +80,11 @@
 
         @if(Auth::user()->role_id == 3)
           <li>
-            <a href="{{ url('/staff/serve_token') }}"><i class="fa fa-key"></i> <span>Server Token</span></a>
+            <a href="#"><i class="fa fa-key"></i> <span>Server Token</span></a>
           </li>
 
           <li>
-            <a href="{{ url('/staff/issue_token') }}"><i class="fa fa-check"></i> <span>Issue Token</span></a>
+            <a href="#"><i class="fa fa-check"></i> <span>Issue Token</span></a>
           </li>
 
           <li>
