@@ -64,8 +64,11 @@ class ManagementController extends Controller
 
     public function destroy($id){
 
-    	User::where('id',$id)->delete();
+    	$management = User::where('id',$id)->delete();
 
-    	return redirect()->back();
+        if ($management) {
+            Session::flash('success', 'Management User Deleted successfully');
+            return back();
+        }
     }
 }

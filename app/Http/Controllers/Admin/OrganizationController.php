@@ -102,8 +102,11 @@ class OrganizationController extends Controller
 
     public function destroy($id) {
 
-    	User::where('id',$id)->delete();
+    	$organization = User::where('id',$id)->delete();
 
-    	return redirect()->back();
+        if ($organization) {
+            Session::flash('success', 'User Deleted successfully');
+            return back();   
+        }
     }
 }
