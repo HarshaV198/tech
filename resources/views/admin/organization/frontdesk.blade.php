@@ -26,7 +26,7 @@
 	      <li>Settings</li>
 	      <li class="active">Front Desks</li>
 	    </ol>
-	    </section>
+		</section>
 
 	    <section class="content">
 	    	<div class="row">
@@ -455,7 +455,7 @@
 						if(response['data']){
 							$('.delete-block').detach();
 							$('.modal').modal('hide');
-							$('#deleteConfirm').css('pointer-events','none');
+							$('#deleteConfirm').css('pointer-events','');
 							$('#deleteConfirm').removeClass('disabled');
 							setTimeout(function(){
 								$.notify({
@@ -523,7 +523,7 @@
 						if(response['data']){
 							$('.delete-block').detach();
 							$('.modal').modal('hide');
-							$('#deleteConfirm').css('pointer-events','none');
+							$('#deleteConfirm').css('pointer-events','');
 							$('#deleteConfirm').removeClass('disabled');
 							setTimeout(function(){
 								$.notify({
