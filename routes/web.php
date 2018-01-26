@@ -93,3 +93,7 @@ Route::get('/staff/serve_token', function(){
     return view('admin.staff.servetoken');
 });
 
+Route::get('/staff/issue_token', function(){
+    return view('admin.staff.issuetoken');
+});
+
