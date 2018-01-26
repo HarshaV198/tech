@@ -87,6 +87,11 @@ Route::group(['middleware' => ['auth']], function() {
     Route::post('/frontdesk/create','FrontDeskController@store');
     
     Route::post('/frontdesk/edit/save','FrontDeskController@update');
+
+    Route::get('/global_settings',function(){
+        return view('admin.organization.globalsettings');
+    });
+
 });
 
 Route::get('/staff/serve_token', function(){
