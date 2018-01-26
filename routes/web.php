@@ -91,14 +91,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/global_settings',function(){
         return view('admin.organization.globalsettings');
     });
-
 });
 
-Route::get('/staff/serve_token', function(){
-    return view('admin.staff.servetoken');
-});
+Route::group(['namespace' => 'Staff'], function(){
 
-Route::get('/staff/issue_token', function(){
-    return view('admin.staff.issuetoken');
+    Route::get('/staff/serve_token', 'ServeTokenController@index')->name('servetoken');
+
+    Route::get('/staff/issue_token', 'IssueTokenController@index')->name('issuetoken');
 });
 
