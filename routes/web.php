@@ -48,6 +48,14 @@ Route::group(['namespace' => 'Superadmin'], function() {
     Route::put('/superadmin/client/{id}', 'ClientController@update')->name('client.update');
 
     Route::delete('/superadmin/client/{id}', 'ClientController@destroy')->name('client.destroy');
+
+    Route::get('/superadmin/categories',function(){
+        return view('admin.superadmin.category');
+    });
+
+    Route::get('/superadmin/subcategories',function(){
+        return view('admin.superadmin.subcategory');
+    });
 });
 
 
@@ -93,7 +101,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 });
 
-
+// Satff routes
 Route::group(['namespace' => 'Staff'], function(){
 
     Route::get('/staff/serve_token', 'ServeTokenController@index')->name('servetoken');

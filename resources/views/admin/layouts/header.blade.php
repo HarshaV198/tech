@@ -31,6 +31,9 @@
 
               <p style="text-transform: capitalize">
                 {{ Auth::user()->name }} - {{ config('app.role')[Auth::user()->role_id] }}
+
+                <small>Member since {{ Auth::user()->created_at->format('d-m-Y')}}</small>
+                
                 <small style="cursor: pointer" data-toggle="modal" data-target=".change-password-modal">Change Password</small>
               </p>
             </li>

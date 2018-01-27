@@ -8,7 +8,7 @@
 	<div class="content-wrapper">
 		<section class="content-header">
 	      <h1>
-	        Wism Clients Management
+	        Wism Organization Management
 	      </h1>
 	      <ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -21,7 +21,7 @@
 	    		<div class="col-xs-12">
 	    			<div class="box">
 			            <div class="box-header">
-			              <h3 class="box-title">Organization Clients</h3>
+			              <h3 class="box-title">Organizations</h3>
 			            </div>
 			            <!-- /.box-header -->
 		            	<div class="box-body">

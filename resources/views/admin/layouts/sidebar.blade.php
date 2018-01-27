@@ -30,6 +30,19 @@
             <a href="{{ route('client') }}"><i class="fa fa-handshake-o"></i> <span>Clients</span></a>
           </li>
 
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-th-list"></i> <span>Create Category</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+              <li><a href="{{ url('/superadmin/categories') }}"><i class="fa fa-circle-o"></i> Category</a></li>
+              <li><a href="{{ url('/superadmin/subcategories') }}"><i class="fa fa-circle-o"></i> Sub Category</a></li>
+            </ul>
+          </li>
+
           <li>
             <a href="#"><i class="fa fa-shopping-cart"></i> <span>Process Orders</span></a>
           </li>
