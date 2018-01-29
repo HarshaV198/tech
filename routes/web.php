@@ -113,3 +113,9 @@ Route::group(['namespace' => 'Staff'], function(){
     Route::get('/staff/issue_token', 'IssueTokenController@index')->name('issuetoken');
 });
 
+//home page related routes
+
+Route::get('/home',function(){
+    return view('index');
+});
+

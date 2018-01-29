@@ -233,7 +233,7 @@
                                         <div class="col-md-5">
                                             <div class="row">
                                                 <div class="col-md-3 text-right">
-                                                    <label>to</label>
+                                                    <label>To</label>
                                                 </div>
                                                 <div class="col-md-9">
                                                     <input type="text" name="website" class="form-control">
