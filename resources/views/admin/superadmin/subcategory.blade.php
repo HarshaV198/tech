@@ -34,31 +34,39 @@
  
 		            	<div class="box-body">
 			              	<table id="example1" class="table table-bordered table-striped">
-				                <thead>
-					                <tr>
-					                  <th>Category Name</th>
-					                  <th>Subcategory Name</th>
-					                  <th>Edit</th>
-					                  <th>Delete</th>
-					                </tr>
-				                </thead>
-				                <tbody>			                	
+								
+								@if(count($subcategories) == 0)
 
-					                <tr>
-					                  <td></td>
-					                  <td></td>
+									<div>
+										<p>No Sbucategories Found</p>
+									</div>								
+								@else
+					                <thead>
+						                <tr>
+						                  <th>Category Name</th>
+						                  <th>Subcategory Name</th>
+						                  <th>Edit</th>
+						                  <th>Delete</th>
+						                </tr>
+					                </thead>
+					                <tbody>
+					                	@foreach($subcategories as $subcategory)
+						                    <tr>
+							                  <td>{{ $subcategory->category_id }}</td>
+							                  <td>{{ $subcategory->name }}</td>
 
-					                  <td>
-					                  	<a href="#"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
-					                  </td>
+							                  <td>
+							                  	<a href="#"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
+							                  </td>
 
-					                  <td>
+							                  <td>
 
-					                  	<a href="#"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
-					                  </td>
-					                </tr>
-						            
-				                </tbody>                
+							                  	<a href="#"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
+							                  </td>
+							                </tr>
+						                @endforeach							            
+					                </tbody>           
+					            @endif     
 			              	</table>
 			            </div>
 			            <!-- /.box-body -->
@@ -75,15 +83,21 @@
 							<h6 class="modal-title">Add Subcategory</h6>
 					</div>
 						<div class="modal-body">
-							<form method="POST" action="" data-parsley-validate="" enctype="multipart/form-data">
+							<form method="POST" action="{{ route('subcategory.store') }}" data-parsley-validate="" enctype="multipart/form-data">
 								{{ csrf_field() }}
 								<div class="form-group">
-									<lable>Select Category</lable>
-									<input type="text" name="category" class="form-control" required/>
+									<select class="form-control" required name="category">
+										<option value="" disabled selected></option>
+										@if(isset($categories) && count($categories))
+											@foreach($categories as  $category)
+											<option value="{{ $category->id }}">{{ $category->name }}</option>
+											@endforeach
+										@endif
+									</select>
 								</div>
 								<div class="form-group">
 									<lable>Subcategory</lable>
-									<input type="text" name="category" class="form-control" required/>
+									<input type="text" name="subcategory" class="form-control" required/>
 								</div>								
 								<div class="btn-class" style="margin-top: 25px">
 									<button type="submit" class="btn btn-success">SAVE</button>		

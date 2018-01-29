@@ -35,29 +35,36 @@
 			            <!-- /.box-header -->
 		            	<div class="box-body">
 			              	<table id="example1" class="table table-bordered table-striped">
-				                <thead>
-					                <tr>
-					                  <th>Category Name</th>
-					                  <th>Edit</th>
-					                  <th>Delete</th>
-					                </tr>
-				                </thead>
-				                <tbody>			                	
+								
+								@if (count($categories) == 0)
+									<dir>
+										<p>No Categories Found Show</p>
+									</dir>
+								@else
+					                <thead>
+						                <tr>
+						                  <th>Category Name</th>
+						                  <th>Edit</th>
+						                  <th>Delete</th>
+						                </tr>
+					                </thead>
+					                <tbody>  
+					                	@foreach ($categories as $category)     
+							                <tr>
+							                  <td>{{ $category->name }}</td>
 
-					                <tr>
-					                  <td></td>
+							                  <td>
+							                  	<a href="#"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
+							                  </td>
 
-					                  <td>
-					                  	<a href="#"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
-					                  </td>
+							                  <td>
 
-					                  <td>
-
-					                  	<a href="#"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
-					                  </td>
-					                </tr>
-						            
-				                </tbody>                
+							                  	<a href="#"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
+							                  </td>
+							                </tr>
+						                @endforeach						            
+					                </tbody>   
+					            @endif             
 			              	</table>
 			            </div>
 			            <!-- /.box-body -->
@@ -74,7 +81,7 @@
 							<h6 class="modal-title">Add Category</h6>
 					</div>
 						<div class="modal-body">
-							<form method="POST" action="" data-parsley-validate="" enctype="multipart/form-data">
+							<form method="POST" action="{{ route('category.store') }}" data-parsley-validate="" enctype="multipart/form-data">
 								{{ csrf_field() }}
 								<div class="form-group">
 									<lable>Category Name</lable>

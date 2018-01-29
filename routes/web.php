@@ -33,6 +33,7 @@ Route::put('/admin/profile/{id}', 'ProfileController@update')->name('profile.upd
 // Super Admin Routes
 Route::group(['namespace' => 'Superadmin'], function() {
 
+    // Management Route
     Route::get('/superadmin/management', 'ManagementController@index')->name('management');
 
     Route::get('/superadmin/management/{id}/edit', 'ManagementController@edit')->name('user.edit');
@@ -41,6 +42,7 @@ Route::group(['namespace' => 'Superadmin'], function() {
 
     Route::delete('/superadmin/management/{id}', 'ManagementController@destroy')->name('user.destroy');
 
+    // Clients Routes
     Route::get('/superadmin/clients', 'ClientController@index')->name('client');
 
     Route::get('/superadmin/client/{id}/edit', 'ClientController@edit')->name('client.edit'); 
@@ -49,13 +51,15 @@ Route::group(['namespace' => 'Superadmin'], function() {
 
     Route::delete('/superadmin/client/{id}', 'ClientController@destroy')->name('client.destroy');
 
-    Route::get('/superadmin/categories',function(){
-        return view('admin.superadmin.category');
-    });
+    // Category Routes
+    Route::get('/superadmin/categories', 'CategoryController@index');
 
-    Route::get('/superadmin/subcategories',function(){
-        return view('admin.superadmin.subcategory');
-    });
+    Route::post('/superadmin/category/store', 'CategoryController@store')->name('category.store');
+
+    // Subcategory Routes
+    Route::get('/superadmin/subcategories', 'SubcategoryController@index');
+
+    Route::post('superadmin/subcategory/store', 'SubcategoryController@store')->name('subcategory.store');
 });
 
 
