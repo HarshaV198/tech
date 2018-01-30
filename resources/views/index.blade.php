@@ -26,7 +26,7 @@
 <section class="category-section">
     <div class="container">
         <div class="row">
-            <div class="col-md-offset-2">
+            <div class="col-md-offset-2 col-md-8">
                 <div class="row category-row">
                     <div class="col-md-4 category-single">
                         <a href="javascript:void(0)">Health</a>

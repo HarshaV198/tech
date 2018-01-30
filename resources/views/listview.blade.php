@@ -31,7 +31,7 @@
         </div>
     </div>
 </section>
-<section>
+<section class="list-view-section">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
@@ -56,18 +56,18 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col-md-8">
+                            <div class="col-md-8 list-wrapper">
                                 <div class="list-single">
                                     <div class="row">
                                         <div class="col-md-2">
                                             <img src="http://via.placeholder.com/150" alt="img">
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-6 description">
                                             <h2>Name of buisness</h2>
                                             <ul class="list-inline">
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
                                                 <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                                 <li><i class="fa fa-star" aria-hidden="true"></i></li>
                                             </ul>
@@ -83,6 +83,129 @@
                                                 <i class="fa fa-info" aria-hidden="true"></i>
                                                 General Physian, Child care,Dental ,Family care
                                             </p>
+                                        </div>
+                                        <div class="col-md-4 description-right">
+                                            <ul class="list-unstyled">
+                                                <li>Open from : 9AM</li>
+                                                <li>Open until : 9AM</li>
+                                                <li>Current wait time : 34min</li>
+                                                <li>Distance : 4km</li>
+                                            </ul>
+                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-single">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="http://via.placeholder.com/150" alt="img">
+                                        </div>
+                                        <div class="col-md-6 description">
+                                            <h2>Name of buisness</h2>
+                                            <ul class="list-inline">
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            </ul>
+                                            <p>
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                305, Sy 3/12 Uttarahalli Mn Rd + 
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                9943254394
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-info" aria-hidden="true"></i>
+                                                General Physian, Child care,Dental ,Family care
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 description-right">
+                                            <ul class="list-unstyled">
+                                                <li>Open from : 9AM</li>
+                                                <li>Open until : 9AM</li>
+                                                <li>Current wait time : 34min</li>
+                                                <li>Distance : 4km</li>
+                                            </ul>
+                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-single">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="http://via.placeholder.com/150" alt="img">
+                                        </div>
+                                        <div class="col-md-6 description">
+                                            <h2>Name of buisness</h2>
+                                            <ul class="list-inline">
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            </ul>
+                                            <p>
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                305, Sy 3/12 Uttarahalli Mn Rd + 
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                9943254394
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-info" aria-hidden="true"></i>
+                                                General Physian, Child care,Dental ,Family care
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 description-right">
+                                            <ul class="list-unstyled">
+                                                <li>Open from : 9AM</li>
+                                                <li>Open until : 9AM</li>
+                                                <li>Current wait time : 34min</li>
+                                                <li>Distance : 4km</li>
+                                            </ul>
+                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="list-single">
+                                    <div class="row">
+                                        <div class="col-md-2">
+                                            <img src="http://via.placeholder.com/150" alt="img">
+                                        </div>
+                                        <div class="col-md-6 description">
+                                            <h2>Name of buisness</h2>
+                                            <ul class="list-inline">
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                                            </ul>
+                                            <p>
+                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
+                                                305, Sy 3/12 Uttarahalli Mn Rd + 
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-phone" aria-hidden="true"></i>
+                                                9943254394
+                                            </p>
+                                            <p>
+                                                <i class="fa fa-info" aria-hidden="true"></i>
+                                                General Physian, Child care,Dental ,Family care
+                                            </p>
+                                        </div>
+                                        <div class="col-md-4 description-right">
+                                            <ul class="list-unstyled">
+                                                <li>Open from : 9AM</li>
+                                                <li>Open until : 9AM</li>
+                                                <li>Current wait time : 34min</li>
+                                                <li>Distance : 4km</li>
+                                            </ul>
+                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
                                         </div>
                                     </div>
                                 </div>
