@@ -10,9 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+//home page related routes
+
+Route::get('/', 'IndexController@index');
+
+Route::get('/categories/{id}', 'IndexController@categories')->name('categories');
+
+
 
 Auth::routes();
 
@@ -113,11 +119,8 @@ Route::group(['namespace' => 'Staff'], function(){
     Route::get('/staff/issue_token', 'IssueTokenController@index')->name('issuetoken');
 });
 
-//home page related routes
 
-Route::get('/home',function(){
-    return view('index');
-});
+
 
 Route::get('/list/view',function(){
     return view('listview');
