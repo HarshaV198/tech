@@ -151,6 +151,43 @@ body{
                     }
                 }
             }
+            .map-tab{
+                .wrapper{
+                    border: 1px solid #555;
+                    border-radius : 4px;
+                    padding: 5px;
+                    .description{
+                        padding: 10px;
+                        border: 1px solid #555;
+                        border-radius: 4px;
+                        margin-bottom: 10px;
+                        h2{
+                            margin: 0;
+                            font-size: 16px;
+                            font-weight: 600;
+                            margin-bottom: 5px;
+                        }
+                        .active-star{
+                            color: #ffc107;
+                        }
+                        p{
+                            font-size: 14px;
+                            i{
+                                margin-right: 5px;
+                            }
+                        }
+                        &:last-child{
+                            margin-bottom: 0;
+                        }
+                    }
+                }
+                .map-wrapper{
+                    border: 1px solid #555;
+                    border-radius: 4px;
+                    padding: 10px;
+                    min-height: 90vh;
+                }
+            }
         }
     }
     //list view scss ends //
