@@ -119,3 +119,7 @@ Route::get('/home',function(){
     return view('index');
 });
 
+Route::get('/list/view',function(){
+    return view('listview');
+});
+
