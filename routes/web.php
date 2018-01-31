@@ -16,8 +16,6 @@
 
 Route::get('/', 'IndexController@index');
 
-Route::get('/categories/{id}', 'IndexController@categories')->name('categories');
-
 
 
 Auth::routes();

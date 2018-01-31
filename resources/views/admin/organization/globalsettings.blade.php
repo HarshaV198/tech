@@ -302,6 +302,31 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="cat-wrapper">
+                                    <label class="main-label">Add Organizartin Location</label>
+                                    <div class="form-group">
+                                        <label for="">Organization Title</label>
+                                        <input type="text" name="title" class="form-control">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Enter location to Search</label>
+                                        <input type="text" name="" id="searchmap" class="form-control"><br><br>
+                                        <div id="map" style="height: 50vh;width: 100%"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Lat</label>
+                                        <input type="text" name="lat" class="form-control" id="lat">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Lng</label>
+                                        <input type="text" name="lng" class="form-control" id="lng">
+                                    </div>
+                                </div>
+
                                 <div class="form-group" style="margin-top: 30px">
                                     <button type="submit" class="btn btn-success">Save</button>
                                 </div>
@@ -313,5 +338,52 @@
         </div>
     </section>
 </div>
+@endsection
 
+@section('footerSection')
+
+    <script>
+        function initMap() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                center: {lat: 12.9716, lng: 77.5946},
+                zoom: 7
+            });
+
+
+            var marker = new google.maps.Marker({
+                position: {lat: 12.9716, lng: 77.5946},
+                map: map,
+                draggable: true
+            });
+
+            var searchBox = new google.maps.places.SearchBox(document.getElementById('searchmap'));
+
+            google.maps.event.addListener(searchBox, 'places_changed', function(){
+
+                var places = searchBox.getPlaces();
+                var bounds = new google.maps.LatLngBounds();
+                var i, place;
+
+                for (i =0; place = places[i]; i++) {
+                    bounds.extend(place.geometry.location);
+                    marker.setPosition(place.geometry.location);
+                }
+
+                map.fitBounds(bounds);
+                map.setZoom(15);
+            });
+
+            google.maps.event.addListener(marker, 'position_changed', function(){
+                
+                var lat = marker.getPosition().lat();
+                var lng = marker.getPosition().lng();
+
+                $('#lat').val(lat);
+                $('#lng').val(lng);
+            });
+        }
+    </script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxe0yAiRjHEIbRijl4mh59i3a9zEA6GBI&libraries=places&callback=initMap"
+      async defer></script>
 @endsection
