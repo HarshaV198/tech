@@ -367,6 +367,14 @@
                 $('#lat').val(lat);
                 $('#lng').val(lng);
             });
+
+            var input = document.getElementById('searchmap');
+            google.maps.event.addDomListener(input, 'keydown', function (event) {
+                if (event.keyCode === 13) {
+                    event.preventDefault();
+                }
+            });
+
         }
     </script>
 
