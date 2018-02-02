@@ -34,7 +34,7 @@ Route::put('/admin/profile/{id}', 'ProfileController@update')->name('profile.upd
 
 
 
-// Super Admin Routes
+// Super Admin related Routes
 Route::group(['namespace' => 'Superadmin'], function() {
 
     // Management Route
@@ -56,18 +56,24 @@ Route::group(['namespace' => 'Superadmin'], function() {
     Route::delete('/superadmin/client/{id}', 'ClientController@destroy')->name('client.destroy');
 
     // Category Routes
-    Route::get('/superadmin/categories', 'CategoryController@index');
+    Route::get('/superadmin/categories', 'CategoryController@index')->name('category');
 
     Route::post('/superadmin/category/store', 'CategoryController@store')->name('category.store');
+
+    Route::get('/superadmin/category/{id}/edit', 'CategoryController@edit')->name('category.edit');
+
+    Route::put('/superadmin/category/{id}', 'CategoryController@update')->name('category.update');
 
     // Subcategory Routes
     Route::get('/superadmin/subcategories', 'SubcategoryController@index');
 
     Route::post('superadmin/subcategory/store', 'SubcategoryController@store')->name('subcategory.store');
+
+    Route::get('/superadmin/subcategory/{id}/edit', 'SubcategoryController@edit')->name('subcategory.edit');
 });
 
 
-// Oragnization Admin Routes
+// Oragnization Admin related Routes
 Route::group(['namespace' => 'Admin'], function() {
 
     Route::get('/organization/staff', 'OrganizationController@index')->name('organization');
@@ -109,7 +115,7 @@ Route::group(['middleware' => ['auth']], function() {
     });
 });
 
-// Satff routes
+// Satff related routes
 Route::group(['namespace' => 'Staff'], function(){
 
     Route::get('/staff/serve_token', 'ServeTokenController@index')->name('servetoken');

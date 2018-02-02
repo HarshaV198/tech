@@ -47,4 +47,41 @@ class CategoryController extends Controller
             return back();
         }
     }
+
+    public function edit($id) {
+
+        $category = Category::where('id', $id)->first();
+
+        return view('admin.superadmin.catedit', compact('category'));
+    }
+
+    public function update(Request $request, $id) {
+
+        $this->validate($request, [
+            
+            'name' => 'required|string|unique:categories',
+        ]);
+
+        $category = Category::find($id);
+
+        $category->name = $request->name;
+        $category->updated_at = date('Y-m-d H:i:s');
+        $category->save();
+
+        if($category){
+            Session::flash('success', 'Category Updated successfully !');
+            return redirect(route('category'));
+        }
+    }
+
+    public function destroy(Request $request) {
+
+        $category = Category::where('id',$request->slug)->first();
+        if($category){
+            $category->delete();
+            return response()->json([
+                'data' => 'Deleted succesfully'
+            ]);
+        }
+    }
 }

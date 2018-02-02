@@ -33,4 +33,11 @@ class SubcategoryController extends Controller
     		return back();
     	}
     }
+
+    public function edit($id) {
+
+        $subcategory = Subcategory::where('id', $id)->first();
+
+        return view('admin.superadmin.subcatedit', compact('subcategory'));
+    }
 }

@@ -56,7 +56,7 @@
 							                  <td>{{ $subcategory->name }}</td>
 
 							                  <td>
-							                  	<a href="#"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
+							                  	<a href="{{ route('subcategory.edit', $subcategory->id) }}"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
 							                  </td>
 
 							                  <td>
