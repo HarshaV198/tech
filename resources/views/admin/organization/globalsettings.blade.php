@@ -35,20 +35,23 @@
                 <div class="box">
                     <div class="box-body">
                         <div class="col-md-offset-1 col-md-10">
-                            <form action="" type="POST">
+                            <?php 
+                                $organization = Auth::user()->organization->first();
+                            ?>
+                            <form method="POST" action="{{ url('/global_setting/store') }}" data-parsley-validate="" enctype="multipart/form-data">
                                 <div class="cat-wrapper">
                                     <label class="main-label">Address</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Address 1</label>
-                                                <input type="text" name="address1" class="form-control">
+                                                <input type="text" name="address1" class="form-control" value="@if($organization && $organization->address1){{ $organization->address1 }}@endif">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Address 2</label>
-                                                <input type="text" name="address2" class="form-control">
+                                                <input type="text" name="address2" class="form-control" value="@if($organization && $organization->address2){{ $organization->address2 }}@endif">
                                             </div>
                                         </div>
                                     </div>
@@ -56,13 +59,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Street</label>
-                                                <input type="text" name="street" class="form-control">
+                                                <input type="text" name="street" class="form-control" value="@if($organization && $organization->street){{ $organization->street }}@endif">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input type="text" name="city" class="form-control">
+                                                <input type="text" name="city" class="form-control" value="@if($organization && $organization->city){{ $organization->city }}@endif">
                                             </div>
                                         </div>
                                     </div>
@@ -70,13 +73,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Province/State</label>
-                                                <input type="text" name="state" class="form-control">
+                                                <input type="text" name="state" class="form-control" value="@if($organization && $organization->state){{ $organization->state }}@endif">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Postal Code</label>
-                                                <input type="text" name="city" class="form-control">
+                                                <input type="text" name="city" class="form-control" value="@if($organization && $organization->postal_code){{ $organization->postal_code }}@endif">
                                             </div>
                                         </div>
                                     </div>
@@ -84,7 +87,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Coutry</label>
-                                                <input type="text" name="country" class="form-control">
+                                                <input type="text" name="country" class="form-control" value="@if($organization && $organization->country){{ $organization->country }}@endif">
                                             </div>
                                         </div>
                                     </div>
@@ -143,54 +146,33 @@
                                     <div class="row">
                                         <div class="col-md-3 form-group">
                                             <label>Select Category</label>
-                                            <select class="form-control">
-                                                <option value="1">1</option>
-                                                <option value="2">2</option>
-                                                <option value="3">3</option>
+                                            <select class="form-control category-change">
+                                                @if(isset($categories) && count($categories))
+                                                @foreach($categories as $category)
+                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                @endforeach
+                                                @endif
                                             </select>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-md-12">
+                                        <div class="col-md-12 sub-categories-blk">
                                             <label style="display:block">Select Sub-Category</label>
-                                            <div>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-1
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-2
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-3
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-4
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-1
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-2
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-3
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-4
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-1
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-2
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-3
-                                                </label>
-                                                <label style="margin-right: 20px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sub-category-4
-                                                </label>
-                                            </div>
+                                            @if(isset($categories) && count($categories))
+                                                @foreach($categories as $category)
+                                                    <div class="category-{{$category->id}} sub-category" @if(!$loop->first) style="display: none" @endif>
+                                                        @foreach($category->subcategories as $subcategory)
+                                                            <label style="margin-right: 20px;cursor: pointer">
+                                                                @if(isset($subcategory->name) && !empty($subcategory->name))
+                                                                    <input type="checkbox" name="subcategory[{{ $category->id }}][{{$subcategory->id}}]" style="margin-right: 5px;position: relative;top: 2px">{{ $subcategory->name }}
+                                                                @else
+                                                                    <span>No Sub-Category</span>
+                                                                @endif
+                                                            </label>
+                                                        @endforeach
+                                                    </div>
+                                                @endforeach
+                                            @endif 
                                         </div>
                                     </div>
                                 </div>
@@ -324,6 +306,16 @@
         </div>
     </section>
 </div>
+<script>
+    $(document).ready(function(){
+        $('.category-change').change(function(){
+            var val = $(this).val();
+            console.log(val);
+            $('.sub-categories-blk').find('.sub-category').hide();
+            $('.sub-categories-blk').find('.category-'+val).show();
+        });
+    });
+</script>
 @endsection
 
 @section('footerSection')

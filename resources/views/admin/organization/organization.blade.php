@@ -14,7 +14,9 @@
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 	        <li class="active">Organization Staff</li>
 	      </ol>
-	    </section>
+			</section>
+			
+			{{ Auth::user()->Organization }}
 
 	    <section class="content">
 	    	<div class="row">

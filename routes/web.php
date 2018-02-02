@@ -104,9 +104,10 @@ Route::group(['middleware' => ['auth']], function() {
     
     Route::post('/frontdesk/edit/save','FrontDeskController@update');
 
-    Route::get('/global_settings',function(){
-        return view('admin.organization.globalsettings');
-    });
+    Route::get('/global_settings','GlobalController@index');
+
+    Route::post('/global_setting/store','GlobalController@store');
+
 });
 
 // Satff routes

@@ -31,4 +31,8 @@ class User extends Authenticatable
     {
         $this->attributes['organization'] = strtolower($value);
     }
+
+    public function organization(){
+        return $this->belongsToMany('App\Models\Organization');
+    }
 }
