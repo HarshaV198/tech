@@ -40,4 +40,15 @@ class SubcategoryController extends Controller
 
         return view('admin.superadmin.subcatedit', compact('subcategory'));
     }
+
+    public function destroy(Request $request) {
+
+        $subcategory = Subcategory::where('id',$request->slug)->first();
+        if($subcategory){
+            $subcategory->delete();
+            return response()->json([
+                'data' => 'Deleted succesfully'
+            ]);
+        }
+    }
 }

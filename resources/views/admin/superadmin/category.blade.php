@@ -160,7 +160,7 @@
 							$('#deleteConfirm').removeClass('disabled');
 							setTimeout(function(){
 								$.notify({
-								message: 'Board Deleted Successfully'
+								message: 'Category Deleted Successfully'
 							}, {
 								type: 'success'
 							});
