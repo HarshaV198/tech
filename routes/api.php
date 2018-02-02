@@ -23,3 +23,6 @@ Route::post('/service/edit/view','ServiceController@editView');
 Route::post('/service/delete','ServiceController@delete');
 Route::post('/config/edit/view','FrontDeskController@editView');
 Route::post('/config/delete','FrontDeskController@delete');
+
+Route::post('/category/delete', 'Superadmin\CategoryController@destroy');
+Route::post('/subcategory/delete', 'Superadmin\SubcategoryController@destroy');

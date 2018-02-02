@@ -33,4 +33,22 @@ class SubcategoryController extends Controller
     		return back();
     	}
     }
+
+    public function edit($id) {
+
+        $subcategory = Subcategory::where('id', $id)->first();
+
+        return view('admin.superadmin.subcatedit', compact('subcategory'));
+    }
+
+    public function destroy(Request $request) {
+
+        $subcategory = Subcategory::where('id',$request->slug)->first();
+        if($subcategory){
+            $subcategory->delete();
+            return response()->json([
+                'data' => 'Deleted succesfully'
+            ]);
+        }
+    }
 }

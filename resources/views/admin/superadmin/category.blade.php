@@ -54,12 +54,12 @@
 							                  <td>{{ $category->name }}</td>
 
 							                  <td>
-							                  	<a href="#"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
+							                  	<a href="{{ route('category.edit', $category->id) }}" class="btn btn-info"><span class="glyphicon glyphicon-edit fa-lg"></span></a>
 							                  </td>
 
 							                  <td>
 
-							                  	<a href="#"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
+							                  	<a href="#" data-id="{{ $category->id }}" class="btn btn-danger btn-sm delete-category"><span class="glyphicon glyphicon-trash fa-lg"></span></a>
 							                  </td>
 							                </tr>
 						                @endforeach						            
@@ -96,6 +96,22 @@
 				</div>
 		</div>
 	</div>
+
+	<div class="modal fade add-board-modal"  id="deleteCategoryModal"   tabindex="-1" role="dialog" data-backdrop="static">
+			<div class="modal-dialog modal-md" role="document">
+			
+			<div class="modal-content">
+				<div class="modal-header" style="border-bottom: none;padding-bottom: 0">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+				</div>
+				<div class="modal-body text-center" style="padding-top: 0">
+					<p style="font-size: 16px">Are you sure you want to delete the Category?..</p>
+					<button id="deleteConfirm" type="submit" class="btn btn-default btn-primary" style="margin-right:10px;font-size: 14px;color: #fff;padding: 6px 15px">YES</button>
+					<button type="button" data-dismiss="modal" class="btn btn-default" style="font-size: 14px;padding: 6px 15px">NO</button>
+				</div>
+			</div>
+		</div>
+	</div>
 @endsection
 
 @section('footerSection')
@@ -113,5 +129,52 @@
 	      'autoWidth'   : false
 	    })
 	  })
+	</script>
+
+	<script>
+		$(document).ready(function(){
+
+			$(document).on('click','.delete-category',function(){
+				var id = $(this).attr('data-id');
+				$('#deleteCategoryModal').find('#deleteConfirm').attr('data-id',id);
+				$('#deleteCategoryModal').modal('show');
+				$(this).closest('tr').addClass('delete-block');
+			});
+
+			$(document).on('click','#deleteConfirm',function(){
+				var id = $(this).attr('data-id');
+				var data = {};
+				data.slug = id;
+				$(this).css('pointer-events','none');
+				$(this).addClass('disabled');
+				$.ajax({
+					url: '/api/category/delete',
+					type: 'POST',
+					data: data,
+					timeout: 30000,
+					success: function (response) {
+						if(response['data']){
+							$('.delete-block').detach();
+							$('.modal').modal('hide');
+							$('#deleteConfirm').css('pointer-events','');
+							$('#deleteConfirm').removeClass('disabled');
+							setTimeout(function(){
+								$.notify({
+								message: 'Category Deleted Successfully'
+							}, {
+								type: 'success'
+							});
+							},500);
+						}
+					}, error: function () {
+
+					}
+				});
+			});
+
+			$('#deleteBoardModal').on('hidden.bs.modal',function(){
+				$('tr').removeClass('delete-block');
+			});
+		});
 	</script>
 @endsection
