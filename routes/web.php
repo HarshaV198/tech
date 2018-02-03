@@ -65,7 +65,7 @@ Route::group(['namespace' => 'Superadmin'], function() {
     Route::put('/superadmin/category/{id}', 'CategoryController@update')->name('category.update');
 
     // Subcategory Routes
-    Route::get('/superadmin/subcategories', 'SubcategoryController@index');
+    Route::get('/superadmin/subcategories', 'SubcategoryController@index')->name('subcategory');
 
     Route::post('superadmin/subcategory/store', 'SubcategoryController@store')->name('subcategory.store');
 

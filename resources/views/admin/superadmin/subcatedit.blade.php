@@ -21,7 +21,7 @@
 	    		<div class="col-md-12">
 		          	<div class="box box-info">
 			            
-			            <form class="form-horizontal" action="" method="POST">
+			            <form class="form-horizontal" action="{{ route('subcategory.update', $subcategory->id) }}" method="POST">
 
 			            	{{ csrf_field() }}
 

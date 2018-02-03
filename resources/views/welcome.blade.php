@@ -93,7 +93,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-offset-2">
                 <ul class="list-inline">
                     <li>
                         <input type="text" class="form-control" placeholder="Search for anything">
