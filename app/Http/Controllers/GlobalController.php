@@ -45,6 +45,7 @@ class GlobalController extends Controller
             $organization->lat = $request->lat;
             $organization->lang = $request->lng;
             $organization->google_location = $request->google_location;
+            $organization->working_days = json_encode($request->working_days);
             if($request->file('profile_pic')){
                 $filename = $request->profile_pic->getClientOriginalName();
                 $currentDateTime = Carbon::now();

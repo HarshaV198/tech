@@ -231,26 +231,29 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label style="display: block">Working Days</label>
+                                                <?php
+                                                    $working_days = json_decode($organization->working_days);
+                                                ?>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="wokingdays[sun]" value="1" style="margin-right: 5px;position: relative;top: 2px">Sun
+                                                    <input @if(isset($working_days->sun)) checked @endif  type="checkbox" name="working_days[sun]" value="1" style="margin-right: 5px;position: relative;top: 2px">Sun
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="wokingdays[mon]" value="1" style="margin-right: 5px;position: relative;top: 2px">Mon
+                                                    <input @if(isset($working_days->mon)) checked @endif type="checkbox" name="working_days[mon]" value="1" style="margin-right: 5px;position: relative;top: 2px">Mon
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="wokingdays[tue]" value="1" style="margin-right: 5px;position: relative;top: 2px">Tue
+                                                    <input @if(isset($working_days->tue)) checked @endif type="checkbox" name="working_days[tue]" value="1" style="margin-right: 5px;position: relative;top: 2px">Tue
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="wokingdays[wed]" value="1" style="margin-right: 5px;position: relative;top: 2px">Wed
+                                                    <input @if(isset($working_days->wed)) checked @endif type="checkbox" name="working_days[wed]" value="1" style="margin-right: 5px;position: relative;top: 2px">Wed
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="wokingdays[thu]" value="1" style="margin-right: 5px;position: relative;top: 2px">Thu
+                                                    <input @if(isset($working_days->thu)) checked @endif type="checkbox" name="working_days[thu]" value="1" style="margin-right: 5px;position: relative;top: 2px">Thu
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="wokingdays[fri]" value="1" style="margin-right: 5px;position: relative;top: 2px">Fri
+                                                    <input @if(isset($working_days->fri)) checked @endif type="checkbox" name="working_days[fri]" value="1" style="margin-right: 5px;position: relative;top: 2px">Fri
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="wokingdays[sat]" value="1" style="margin-right: 5px;position: relative;top: 2px">Sat
+                                                    <input @if(isset($working_days->sat)) checked @endif type="checkbox" name="working_days[sat]" value="1" style="margin-right: 5px;position: relative;top: 2px">Sat
                                                 </label>
                                             </div>
                                         </div>
@@ -259,7 +262,7 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>Stat Holydays</label>
-                                                <input type="text" name="holydays" class="form-control" placeholder="Ex: 12/06/2017" value="{{ $organization->holydays }}">
+                                                <input type="text" name="holydays" class="form-control" placeholder="Ex: 12/06/2017,13/06/2017" value="{{ $organization->holydays }}">
                                             </div>
                                         </div>
                                     </div>
