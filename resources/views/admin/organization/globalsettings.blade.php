@@ -77,7 +77,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Postal Code</label>
-                                                <input type="text" name="city" class="form-control" value="{{ $organization->postal_code }}">
+                                                <input type="text" name="postal_code" class="form-control" value="{{ $organization->postal_code }}">
                                             </div>
                                         </div>
                                     </div>
@@ -119,7 +119,9 @@
                                             <div class="form-group">
                                                 <label>Profile Photo</label>
                                                 @if(isset($organization->profile_pic) && $organization->profile_pic)
-                                                    <img style="display: block;margin-bottom: 10px" src="{{ $organization->profile_pic }}">
+                                                    <img style="display: block;margin-bottom: 10px;height: 200px; width: 200px;object-fit: cover" src="{{ Storage::disk('local')->url($organization->profile_pic) }}">
+                                                @else
+                                                    <img style="display: block;margin-bottom: 10px;height: 200px; width: 200px;object-fit: cover" src="{{ asset('img/placeholder.gif') }}">
                                                 @endif
                                                 <input type="file" accept=".png, .jpg, .jpeg" name="profile_pic" class="form-control-file">
                                             </div>
@@ -129,8 +131,10 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Premium Ad Banner</label>
-                                                @if(isset($organization->premium_banner) && $organization->premium_banner)
-                                                    <img style="display: block;margin-bottom: 10px" src="{{ $organization->premium_banner }}">
+                                                @if(isset($organization->premium_banner) && !empty($organization->premium_banner))
+                                                    <img style="display: block;margin-bottom: 10px;height: 200px; width: 200px;object-fit: cover" src="{{ Storage::disk('local')->url($organization->premium_banner) }}">
+                                                @else
+                                                    <img style="display: block;margin-bottom: 10px;height: 200px; width: 200px;object-fit: cover" src="{{ asset('img/placeholder.gif') }}">
                                                 @endif
                                                 <input type="file" accept=".png, .jpg, .jpeg" name="premium_banner" class="form-control-file">
                                             </div>
@@ -141,7 +145,9 @@
                                             <div class="form-group">
                                                 <label>Classic Ad Banner</label>
                                                 @if(isset($organization->classic_banner) && $organization->classic_banner)
-                                                    <img style="display: block;margin-bottom: 10px" src="{{ $organization->classic_banner }}">
+                                                    <img style="display: block;margin-bottom: 10px;height: 200px; width: 200px;object-fit: cover" src="{{ Storage::disk('local')->url($organization->classic_banner) }}">
+                                                @else
+                                                    <img style="display: block;margin-bottom: 10px;height: 200px; width: 200px;object-fit: cover" src="{{ asset('img/placeholder.gif') }}">
                                                 @endif
                                                 <input type="file" accept=".png, .jpg, .jpeg" name="classic_banner" class="form-control-file">
                                             </div>
@@ -190,19 +196,19 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Start Time</label>
-                                                <input type="text" name="start_time" class="form-control" value="{{ $organization->start_time }}">
+                                                <input type="text" name="start_time" class="form-control" @if($organization->full_day) {{ 'disabled' }} @endif  value="{{ $organization->start_time }}">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Close Time</label>
-                                                <input type="text" name="end_time" class="form-control" value="{{ $organization->end_time }}">
+                                                <input type="text" name="end_time" class="form-control" @if($organization->full_day) {{ 'disabled' }} @endif value="{{ $organization->end_time }}">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group" style="margin-top: 24px">
                                                 <label style="margin-top: 4px;cursor: pointer">
-                                                    <input type="checkbox" style="margin-right: 5px;position: relative;top: 2px" name="full_day" value="1" @if($organization->full_day) {{ 'checked' }} @endif>Open 24 hours
+                                                    <input id="fullDay" type="checkbox" style="margin-right: 5px;position: relative;top: 2px" name="full_day" value="1" @if($organization->full_day) {{ 'checked' }} @endif>Open 24 hours
                                                 </label>
                                             </div>
                                         </div>
@@ -274,7 +280,7 @@
                                     <div class="row">
                                         <div class="col-md-5">
                                             <label>Default Wait Time</label>
-                                            <input type="text" name="default_wait_time" class="form-control" value="{{ $organization->default_wait_time }}" placeholder="In min ex: 30">
+                                            <input type="text" name="default_wait_time" class="form-control" value="{{ $organization->default_wait_time }}" placeholder="In min ex: 30 Min">
                                         </div>
                                     </div>
                                 </div>
@@ -283,11 +289,11 @@
                                     <label class="main-label">Add Organizatin Location</label>
                                     <div class="form-group">
                                         <label for="">Enter location to Search</label>
-                                        <input type="text" name="" id="searchmap" class="form-control"><br><br>
+                                        <input type="text" name="google_location" id="searchmap" class="form-control" value="{{ $organization->google_location }}"><br><br>
                                         <div id="map" style="height: 50vh;width: 100%"></div>
                                     </div>
-                                    <input type="hidden" name="lng" class="form-control" id="lng">
-                                    <input type="hidden" name="lat" class="form-control" id="lat" >
+                                    <input type="hidden" name="lat" value="{{ $organization->lat }}" class="form-control" id="lat" >
+                                    <input type="hidden" name="lng" value="{{ $organization->lang }}" class="form-control" id="lng">
                                 </div>
                                 <div class="form-group" style="margin-top: 30px">
                                     <button type="submit" class="btn btn-success">Save</button>
@@ -308,6 +314,35 @@
             $('.sub-categories-blk').find('.sub-category').hide();
             $('.sub-categories-blk').find('.category-'+val).show();
         });
+        $('#fullDay').on('click',function(){
+            if($(this).is(':checked')){
+                $('input[name="start_time"]').val('');
+                $('input[name="start_time"]').prop('disabled',true);
+                $('input[name="end_time"]').val('');
+                $('input[name="end_time"]').prop('disabled',true);
+            }
+            else{
+                $('input[name="start_time"]').prop('disabled',false);;
+                $('input[name="end_time"]').prop('disabled',false);;
+            }
+            
+        });
+        $('input[type=file]').on('change',function(){
+            readURL($(this));
+        });
+    
+        function readURL(input) {
+          if (input[0] && input[0]['files']) {
+              $.each(input[0]['files'], function (index, file) {
+                  var reader = new FileReader();
+                  reader.fileName = file.name;
+                  reader.onload = function (e) {
+                      input.parent().find('img').attr('src', e.target.result);
+                  };
+                  reader.readAsDataURL(file);
+              });
+          }
+        }
     });
 </script>
 @endsection
@@ -316,14 +351,21 @@
 
     <script>
         function initMap() {
+            var lat = 12.9716;
+            var lang = 77.5946;
+            @if($organization->lat && $organization->lang)
+                lat = {{ $organization->lat }}
+                lang = {{ $organization->lang }}
+            @endif
+            
             var map = new google.maps.Map(document.getElementById('map'), {
-                center: {lat: 12.9716, lng: 77.5946},
-                zoom: 7
+                center: {lat: lat , lng: lang},
+                zoom: 16
             });
 
 
             var marker = new google.maps.Marker({
-                position: {lat: 12.9716, lng: 77.5946},
+                position: {lat: lat, lng: lang},
                 map: map,
                 draggable: true
             });
