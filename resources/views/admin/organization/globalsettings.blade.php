@@ -35,23 +35,21 @@
                 <div class="box">
                     <div class="box-body">
                         <div class="col-md-offset-1 col-md-10">
-                            <?php 
-                                $organization = Auth::user()->organization->first();
-                            ?>
                             <form method="POST" action="{{ url('/global_setting/store') }}" data-parsley-validate="" enctype="multipart/form-data">
+                                {{ csrf_field() }}
                                 <div class="cat-wrapper">
                                     <label class="main-label">Address</label>
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Address 1</label>
-                                                <input type="text" name="address1" class="form-control" value="@if($organization && $organization->address1){{ $organization->address1 }}@endif">
+                                                <input type="text" name="address1" class="form-control" value="{{ $organization->address1 }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Address 2</label>
-                                                <input type="text" name="address2" class="form-control" value="@if($organization && $organization->address2){{ $organization->address2 }}@endif">
+                                                <input type="text" name="address2" class="form-control" value="{{ $organization->address2 }}">
                                             </div>
                                         </div>
                                     </div>
@@ -59,13 +57,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Street</label>
-                                                <input type="text" name="street" class="form-control" value="@if($organization && $organization->street){{ $organization->street }}@endif">
+                                                <input type="text" name="street" class="form-control" value="{{ $organization->street }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>City</label>
-                                                <input type="text" name="city" class="form-control" value="@if($organization && $organization->city){{ $organization->city }}@endif">
+                                                <input type="text" name="city" class="form-control" value="{{ $organization->city }}">
                                             </div>
                                         </div>
                                     </div>
@@ -73,13 +71,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Province/State</label>
-                                                <input type="text" name="state" class="form-control" value="@if($organization && $organization->state){{ $organization->state }}@endif">
+                                                <input type="text" name="state" class="form-control" value="{{ $organization->state }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Postal Code</label>
-                                                <input type="text" name="city" class="form-control" value="@if($organization && $organization->postal_code){{ $organization->postal_code }}@endif">
+                                                <input type="text" name="city" class="form-control" value="{{ $organization->postal_code }}">
                                             </div>
                                         </div>
                                     </div>
@@ -87,7 +85,7 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Coutry</label>
-                                                <input type="text" name="country" class="form-control" value="@if($organization && $organization->country){{ $organization->country }}@endif">
+                                                <input type="text" name="country" class="form-control" value="{{ $organization->country }}">
                                             </div>
                                         </div>
                                     </div>
@@ -98,13 +96,13 @@
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Telephone</label>
-                                                <input type="text" name="telephone" class="form-control">
+                                                <input type="text" name="telephone" class="form-control" value="{{ $organization->telephone }}">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label>Website</label>
-                                                <input type="text" name="website" class="form-control">
+                                                <input type="text" name="website" class="form-control" value="{{ $organization->website }}">
                                             </div>
                                         </div>
                                     </div>
@@ -112,7 +110,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Info on Services</label>
-                                                <textarea rows="4" style="width: 100%;overflow: hidden" name="service_info"></textarea>
+                                                <textarea rows="4" style="width: 100%;overflow: hidden" name="service_info" value="{{ $organization->service_info }}">{{ $organization->service_info }}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -120,7 +118,10 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Profile Photo</label>
-                                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control-file">
+                                                @if(isset($organization->profile_pic) && $organization->profile_pic)
+                                                    <img style="display: block;margin-bottom: 10px" src="{{ $organization->profile_pic }}">
+                                                @endif
+                                                <input type="file" accept=".png, .jpg, .jpeg" name="profile_pic" class="form-control-file">
                                             </div>
                                         </div>
                                     </div>
@@ -128,7 +129,10 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Premium Ad Banner</label>
-                                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control-file">
+                                                @if(isset($organization->premium_banner) && $organization->premium_banner)
+                                                    <img style="display: block;margin-bottom: 10px" src="{{ $organization->premium_banner }}">
+                                                @endif
+                                                <input type="file" accept=".png, .jpg, .jpeg" name="premium_banner" class="form-control-file">
                                             </div>
                                         </div>
                                     </div>
@@ -136,7 +140,10 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Classic Ad Banner</label>
-                                                <input type="file" accept=".png, .jpg, .jpeg" class="form-control-file">
+                                                @if(isset($organization->classic_banner) && $organization->classic_banner)
+                                                    <img style="display: block;margin-bottom: 10px" src="{{ $organization->classic_banner }}">
+                                                @endif
+                                                <input type="file" accept=".png, .jpg, .jpeg" name="classic_banner" class="form-control-file">
                                             </div>
                                         </div>
                                     </div>
@@ -149,6 +156,7 @@
                                             <select class="form-control category-change">
                                                 @if(isset($categories) && count($categories))
                                                 @foreach($categories as $category)
+                                                
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                                 @endforeach
                                                 @endif
@@ -182,19 +190,19 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Start Time</label>
-                                                <input type="text" name="telephone" class="form-control">
+                                                <input type="text" name="start_time" class="form-control" value="{{ $organization->start_time }}">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Close Time</label>
-                                                <input type="text" name="website" class="form-control">
+                                                <input type="text" name="end_time" class="form-control" value="{{ $organization->end_time }}">
                                             </div>
                                         </div>
                                         <div class="col-md-2">
                                             <div class="form-group" style="margin-top: 24px">
                                                 <label style="margin-top: 4px;cursor: pointer">
-                                                    <input type="checkbox" style="margin-right: 5px;position: relative;top: 2px">Open 24 hours
+                                                    <input type="checkbox" style="margin-right: 5px;position: relative;top: 2px" name="full_day" value="1" @if($organization->full_day) {{ 'checked' }} @endif>Open 24 hours
                                                 </label>
                                             </div>
                                         </div>
@@ -203,13 +211,13 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Lunch Break From</label>
-                                                <input type="text" name="telephone" class="form-control">
+                                                <input type="text" name="lunch_break_from" class="form-control"  value="{{ $organization->lunch_break_from }}">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>To</label>
-                                                <input type="text" name="website" class="form-control">
+                                                <input type="text" name="lunch_break_to" class="form-control" value="{{ $organization->lunch_break_to }}">
                                             </div>
                                         </div>
                                     </div>
@@ -218,25 +226,25 @@
                                             <div class="form-group">
                                                 <label style="display: block">Working Days</label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sun
+                                                    <input type="checkbox" name="wokingdays[sun]" value="1" style="margin-right: 5px;position: relative;top: 2px">Sun
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Mon
+                                                    <input type="checkbox" name="wokingdays[mon]" value="1" style="margin-right: 5px;position: relative;top: 2px">Mon
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Tue
+                                                    <input type="checkbox" name="wokingdays[tue]" value="1" style="margin-right: 5px;position: relative;top: 2px">Tue
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Wed
+                                                    <input type="checkbox" name="wokingdays[wed]" value="1" style="margin-right: 5px;position: relative;top: 2px">Wed
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Thu
+                                                    <input type="checkbox" name="wokingdays[thu]" value="1" style="margin-right: 5px;position: relative;top: 2px">Thu
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Fri
+                                                    <input type="checkbox" name="wokingdays[fri]" value="1" style="margin-right: 5px;position: relative;top: 2px">Fri
                                                 </label>
                                                 <label style="margin-right: 15px">
-                                                    <input type="checkbox" name="sun" style="margin-right: 5px;position: relative;top: 2px">Sat
+                                                    <input type="checkbox" name="wokingdays[sat]" value="1" style="margin-right: 5px;position: relative;top: 2px">Sat
                                                 </label>
                                             </div>
                                         </div>
@@ -245,7 +253,7 @@
                                         <div class="col-md-10">
                                             <div class="form-group">
                                                 <label>Stat Holydays</label>
-                                                <input type="text" name="sun" class="form-control">
+                                                <input type="text" name="holydays" class="form-control" placeholder="Ex: 12/06/2017" value="{{ $organization->holydays }}">
                                             </div>
                                         </div>
                                     </div>
@@ -253,20 +261,20 @@
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Weekend/Holyday Hours</label>
-                                                <input type="text" name="telephone" class="form-control">
+                                                <input type="text" name="holyday_starttime" class="form-control" value="{{ $organization->holyday_starttime }}">
                                             </div>
                                         </div>
                                         <div class="col-md-5">
                                             <div class="form-group">
                                                 <label>Close Time</label>
-                                                <input type="text" name="website" class="form-control">
+                                                <input type="text" name="holyday_endtime" class="form-control" value="{{ $organization->holyday_endtime }}">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="col-md-5">
                                             <label>Default Wait Time</label>
-                                            <input type="text" name="sun" class="form-control">
+                                            <input type="text" name="default_wait_time" class="form-control" value="{{ $organization->default_wait_time }}" placeholder="In min ex: 30">
                                         </div>
                                     </div>
                                 </div>
@@ -274,27 +282,13 @@
                                 <div class="cat-wrapper">
                                     <label class="main-label">Add Organizatin Location</label>
                                     <div class="form-group">
-                                        <label for="">Organization Title</label>
-                                        <input type="text" name="title" class="form-control">
-                                    </div>
-
-                                    <div class="form-group">
                                         <label for="">Enter location to Search</label>
                                         <input type="text" name="" id="searchmap" class="form-control"><br><br>
                                         <div id="map" style="height: 50vh;width: 100%"></div>
                                     </div>
-
-                                    <div class="form-group">
-                                        <label for="">Lat</label>
-                                        <input type="text" name="lat" class="form-control" id="lat">
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="">Lng</label>
-                                        <input type="text" name="lng" class="form-control" id="lng">
-                                    </div>
+                                    <input type="hidden" name="lng" class="form-control" id="lng">
+                                    <input type="hidden" name="lat" class="form-control" id="lat" >
                                 </div>
-
                                 <div class="form-group" style="margin-top: 30px">
                                     <button type="submit" class="btn btn-success">Save</button>
                                 </div>

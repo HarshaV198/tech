@@ -33,6 +33,6 @@ class User extends Authenticatable
     }
 
     public function organization(){
-        return $this->belongsToMany('App\Models\Organization');
+        return $this->belongsTo('App\Models\Organization');
     }
 }

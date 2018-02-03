@@ -98,7 +98,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     Route::post('/board/create','BoardController@store');
 
-    Route::post('//board/edit/save','BoardController@update');
+    Route::post('/board/edit/save','BoardController@update');
 
     Route::get('/frontdesk','ServiceController@index');
 
