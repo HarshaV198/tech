@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Subcategory;
+use Session;
 
 class SubcategoryController extends Controller
 {
@@ -39,6 +40,25 @@ class SubcategoryController extends Controller
         $subcategory = Subcategory::where('id', $id)->first();
 
         return view('admin.superadmin.subcatedit', compact('subcategory'));
+    }
+
+    public function update(Request $request, $id) {
+
+        $this->validate($request, [
+            
+            'name' => 'required|string|unique:subcategories',
+        ]);
+
+        $subcategory = Subcategory::find($id);
+
+        $subcategory->name = $request->name;
+        $subcategory->updated_at = date('Y-m-d H:i:s');
+        $subcategory->save();
+
+        if($subcategory){
+            Session::flash('success', 'Subcategory Updated successfully !');
+            return redirect(route('subcategory'));
+        }
     }
 
     public function destroy(Request $request) {
