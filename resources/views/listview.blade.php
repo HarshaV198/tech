@@ -1,5 +1,17 @@
 @extends('layouts.app')
 @section('content')
+<style>
+    .modal-title{
+        font-size: 20px;
+        font-weight: 500;
+    }
+    .modal-header .close{
+        font-size: 14px;
+    }
+    button:active,button:focus{
+        outline: none;
+    }
+</style>
 <section>
     <div class="container">
         <div class="row">
@@ -95,7 +107,7 @@
                                                 <li>Current wait time : 34min</li>
                                                 <li>Distance : 4km</li>
                                             </ul>
-                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
+                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#addServiceModal"  class="btn btn-success">Pick token</a>
                                         </div>
                                     </div>
                                 </div>
@@ -129,7 +141,7 @@
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
                                                 {{ $organization->telephone  }}
                                             </p>
-                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
+                                            <a href="#" data-toggle="modal" data-target="#addServiceModal"  class="btn btn-success">Pick token</a>
                                         </div>
                                         @endforeach
                                     @else
@@ -149,6 +161,36 @@
         </div>
     </div>
 </section>
+<div class="modal fade add-service-modal"  id="addServiceModal"   tabindex="-1" role="dialog" data-backdrop="static">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
+                <h6 class="modal-title">Add Service</h6>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ url('/service/create') }}" data-parsley-validate="" enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <div class="form-group">
+                        <lable>Name</lable>
+                        <input type="text" name="name" class="form-control" required/>
+                    </div>
+                    <div class="form-group">
+                        <lable>Description</lable>
+                        <textarea style="max-width: 100%" class="form-control" rows="4" name="description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <lable>Token Prefix</lable>
+                        <input type="text" class="form-control" name="token_prefix" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-length="[1,1]" data-parsley-pattern-message="Only alphabet allowed" data-parsley-length-message="Only one character allowed" required/>
+                    </div>
+                    <div class="btn-class" style="margin-top: 25px">
+                        <button type="submit" class="btn btn-success">SAVE</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     var map;
     function initMap() {
