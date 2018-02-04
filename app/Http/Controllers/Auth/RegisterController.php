@@ -107,7 +107,10 @@ class RegisterController extends Controller
             ]);
             if($organization){
                 $user->organization_id = $organization->id;
-                $user->update();
+                $user = $user->update();
+                if($user){
+                    Session::flash('success','Your email verified you can login now!');
+                }
             }
             else{
                 $user->delete();

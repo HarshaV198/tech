@@ -413,8 +413,8 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxe0yAiRjHEIbRijl4mh59i3a9zEA6GBI&libraries=places&callback=initMap"
       async defer></script>
-      @endif 
-
+      
+    @else
       <section>
             <div class="row">
                 <div class="col-xs-12">
@@ -428,5 +428,5 @@
                 </div>
             </div>
       </section>
-
+    @endif 
 @endsection

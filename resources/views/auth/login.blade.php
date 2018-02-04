@@ -67,6 +67,9 @@
                                 </a>
                             </div>
                         </div>
+                        @if(Session::has('success'))
+                            <p style="text-align:center;color: #35a235;margin-top: 30px;">{{ Session::get('success') }}</p>
+                        @endif
                     </form>
                 </div>
             </div>
