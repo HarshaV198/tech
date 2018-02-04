@@ -16,6 +16,14 @@
 
 Route::get('/', 'IndexController@index');
 
+Route::get('/listview/category/{id}', 'ListviewController@categorylistview')->name('listview.category');
+
+Route::get('/listview/subcategory/{id}', 'ListviewController@subcategorylistview')->name('listview.subcategory');
+
+// Route::get('/list/view',function(){
+//     return view('listview');
+// });
+
 
 
 Auth::routes();
@@ -37,7 +45,7 @@ Route::put('/admin/profile/{id}', 'ProfileController@update')->name('profile.upd
 // Super Admin related Routes
 Route::group(['namespace' => 'Superadmin'], function() {
 
-    // Management Route
+    // Management related Route
     Route::get('/superadmin/management', 'ManagementController@index')->name('management');
 
     Route::get('/superadmin/management/{id}/edit', 'ManagementController@edit')->name('user.edit');
@@ -46,7 +54,7 @@ Route::group(['namespace' => 'Superadmin'], function() {
 
     Route::delete('/superadmin/management/{id}', 'ManagementController@destroy')->name('user.destroy');
 
-    // Clients Routes
+    // Clients related Routes
     Route::get('/superadmin/clients', 'ClientController@index')->name('client');
 
     Route::get('/superadmin/client/{id}/edit', 'ClientController@edit')->name('client.edit'); 
@@ -55,7 +63,7 @@ Route::group(['namespace' => 'Superadmin'], function() {
 
     Route::delete('/superadmin/client/{id}', 'ClientController@destroy')->name('client.destroy');
 
-    // Category Routes
+    // Category related Routes
     Route::get('/superadmin/categories', 'CategoryController@index')->name('category');
 
     Route::post('/superadmin/category/store', 'CategoryController@store')->name('category.store');
@@ -64,7 +72,7 @@ Route::group(['namespace' => 'Superadmin'], function() {
 
     Route::put('/superadmin/category/{id}', 'CategoryController@update')->name('category.update');
 
-    // Subcategory Routes
+    // Subcategory related Routes
     Route::get('/superadmin/subcategories', 'SubcategoryController@index')->name('subcategory');
 
     Route::post('superadmin/subcategory/store', 'SubcategoryController@store')->name('subcategory.store');
@@ -127,7 +135,5 @@ Route::group(['namespace' => 'Staff'], function(){
 
 
 
-Route::get('/list/view',function(){
-    return view('listview');
-});
+
 
