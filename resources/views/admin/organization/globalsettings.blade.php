@@ -18,7 +18,7 @@
         font-size: 18px;
     }
 </style>
-
+@if(isset($organization ) && $organization )
 <div class="content-wrapper">
     <section class="content-header">
         <h1>
@@ -29,6 +29,7 @@
         <li><i class="fa fa-cog" style="margin-right: 5px"></i>Global Settings</li>
     </ol>
     </section>
+   
     <section class="content">
         <div class="row">
             <div class="col-xs-12">
@@ -308,6 +309,7 @@
             </div>
         </div>
     </section>
+   
 </div>
 <script>
     $(document).ready(function(){
@@ -411,4 +413,20 @@
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxe0yAiRjHEIbRijl4mh59i3a9zEA6GBI&libraries=places&callback=initMap"
       async defer></script>
+      @endif 
+
+      <section>
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="box">
+                        <div class="box-body">
+                            <div class="col-md-offset-1 col-md-10">
+                                <p style="padding: 200px 0;text-align: center;font-size: 24px;height: 80vh ">Organization not found</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+      </section>
+
 @endsection

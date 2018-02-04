@@ -86,6 +86,9 @@
                     @if(Session::has('success'))
                         <p style="text-align:center;color: #35a235;margin-top: 30px;">Email has been sent to your email id please verify</p>
                     @endif
+                    @if(Session::has('error'))
+                        <p style="text-align:center;color: #ff0000;margin-top: 30px;">{{ Session::get('error') }}</p>
+                    @endif
                 </div>
             </div>
         </div>

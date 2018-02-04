@@ -12,6 +12,7 @@ use App\Mail\verifyEmail;
 use Session;
 use Illuminate\Http\Request;
 use Illuminate\Auth\Events\Registered;
+use App\Models\Organization;
 
 class RegisterController extends Controller
 {
@@ -69,16 +70,22 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $organization = Organization::where('name',strtolower($data['organization']))->first();
+        if($organization){
+            Session::flash('error','Organization with this name already exists');
+            return back();
+        }
         $user = User::create([
             'name' => $data['name'],
-            'organization' => $data['organization'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
             'verify_token' => Str::random(40),
         ]);
+
+        $organization = $data['organization'];
         
         if($user){
-            $mail =  Mail::send('mails.sendView', ['user' => $user], function ($message) use($user) {
+            $mail =  Mail::send('mails.sendView', ['user' => $user, 'organization' => $organization], function ($message) use($user) {
                 $message->from('wism@gmail.com');
                 $message->to($user->email);
                 $message->subject('Verify Email!');
@@ -87,15 +94,30 @@ class RegisterController extends Controller
         Session::flash('success','Please verify your email');
     }
 
-    public function sendEmailDone($email, $verifyToken) {
+    public function sendEmailDone($email, $verifyToken, $organization) {
 
         $user = User::where(['email' => $email, 'verify_token' => $verifyToken])->first();
 
         if ($user) {
-            user::where(['email' => $email, 'verify_token' => $verifyToken])->update(['confirmed' => '1', 'verify_token' => NULL]);
+            $user->confirmed = 1;
+            $user->verify_token = NULL;
+            $user->update();
+            $organization = Organization::create([
+                'name' => $organization
+            ]);
+            if($organization){
+                $user->organization_id = $organization->id;
+                $user->update();
+            }
+            else{
+                $user->delete();
+                Session::flash('error','Something went wrong try again');
+                return redirect(route('register'));
+            }
             return redirect(route('login'));
         } else {
-            return 'user not found';
+            Session::flash('error','Invalid credentials');
+            return redirect(route('register'));
         }
     }
 

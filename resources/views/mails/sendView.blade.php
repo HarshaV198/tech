@@ -1,1 +1,1 @@
-To verify email <a href="{{ url('/verify/' . $user->email .'/'.$user->verify_token) }}">Click here</a>
+To verify email <a href="{{ url('/verify/' . $user->email .'/'.$user->verify_token.'/'.$organization) }}">Click here</a>

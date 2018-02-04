@@ -19,6 +19,11 @@ class Organization extends Model
         'category_id'
     ];
 
+    public function setNameAttribute($value)
+    {
+        $this->attributes['name'] = strtolower($value);
+    }
+
     public function users(){
         return $this->belongsToMany('App\Models\User');
     }

@@ -15,7 +15,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'organization', 'verify_token',
+        'name', 'email', 'password', 'organization','role_id','confirmed','status','verify_token','organization_id',
     ];
 
     /**
@@ -26,11 +26,6 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-
-    public function setOrganizationAttribute($value)
-    {
-        $this->attributes['organization'] = strtolower($value);
-    }
 
     public function organization(){
         return $this->belongsTo('App\Models\Organization');
