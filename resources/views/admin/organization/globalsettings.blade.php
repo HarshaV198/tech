@@ -159,11 +159,11 @@
                                     <div class="row">
                                         <div class="col-md-3 form-group">
                                             <label>Select Category</label>
-                                            <select class="form-control category-change">
+                                            <select name="category" class="form-control category-change" required>
+                                                <option value="" selected disabled>Select Category</option>
                                                 @if(isset($categories) && count($categories))
                                                 @foreach($categories as $category)
-                                                
-                                                <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}" @if($organization->category_id == $category->id) selected @endif>{{ $category->name }}</option>
                                                 @endforeach
                                                 @endif
                                             </select>
@@ -174,11 +174,11 @@
                                             <label style="display:block">Select Sub-Category</label>
                                             @if(isset($categories) && count($categories))
                                                 @foreach($categories as $category)
-                                                    <div class="category-{{$category->id}} sub-category" @if(!$loop->first) style="display: none" @endif>
+                                                    <div class="category-{{$category->id}} sub-category" @if(isset($organization->category_id) && !empty($organization->category_id)) @if($organization->category_id != $category->id) style="display: none" @endif @else @if(!$loop->first) style="display: none"  @endif @endif >
                                                         @foreach($category->subcategories as $subcategory)
                                                             <label style="margin-right: 20px;cursor: pointer">
                                                                 @if(isset($subcategory->name) && !empty($subcategory->name))
-                                                                    <input type="checkbox" name="subcategory[{{ $category->id }}][{{$subcategory->id}}]" style="margin-right: 5px;position: relative;top: 2px">{{ $subcategory->name }}
+                                                                    <input @if($organization->subcategories->contains($subcategory->id)) checked @endif  type="checkbox" name="subcategories[{{$subcategory->id}}]" style="margin-right: 5px;position: relative;top: 2px" value="{{ $subcategory->id }}">{{ $subcategory->name }}
                                                                 @else
                                                                     <span>No Sub-Category</span>
                                                                 @endif

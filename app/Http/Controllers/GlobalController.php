@@ -24,6 +24,7 @@ class GlobalController extends Controller
         $user = $request->user(); 
         if($user->role_id == 2){
             $organization = $user->organization;
+            $organization->category_id = $request->category;
             $organization->address1 = $request->address1;
             $organization->address2 = $request->address2;
             $organization->street = $request->street;
@@ -46,6 +47,7 @@ class GlobalController extends Controller
             $organization->lang = $request->lng;
             $organization->google_location = $request->google_location;
             $organization->working_days = json_encode($request->working_days);
+            $organization->holydays = $request->holydays;
             if($request->file('profile_pic')){
                 $filename = $request->profile_pic->getClientOriginalName();
                 $currentDateTime = Carbon::now();
@@ -70,7 +72,20 @@ class GlobalController extends Controller
                 $profile_pic =  $request->classic_banner->storeAs('public/upload',$filename);
                 $organization->classic_banner = $profile_pic;
             }
+            if($request->has('subcategories')){
+                $organization->subcategories()->detach();
+                foreach ($request->subcategories as $subcategory) {
+                    if (!$organization->subcategories->contains($subcategory)) {
+                        $organization->subcategories()->attach($subcategory);
+                    }
+                }
+            }
+            else{
+                $organization->subcategories()->detach();
+            }
             $organization->update();
+            $request->session()->flash('success','Organization details stored successfully !');
+            return back();
          }
         return back();
     }

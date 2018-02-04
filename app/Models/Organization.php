@@ -15,7 +15,8 @@ class Organization extends Model
         'street',
         'city',
         'state',
-        'postal_code'
+        'postal_code',
+        'category_id'
     ];
 
     public function users(){
