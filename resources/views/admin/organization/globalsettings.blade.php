@@ -110,7 +110,7 @@
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Info on Services</label>
-                                                <textarea rows="4" style="width: 100%;overflow: hidden" name="service_info" value="{{ $organization->service_info }}">{{ $organization->service_info }}</textarea>
+                                                <textarea class="form-control" rows="4" style="width: 100%;overflow: hidden" name="service_info" value="{{ $organization->service_info }}">{{ $organization->service_info }}</textarea>
                                             </div>
                                         </div>
                                     </div>
