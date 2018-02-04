@@ -166,25 +166,66 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close" style="position: relative;top: -5px"><span aria-hidden="true" style="font-size:24px; vertical-align:middle;position: relative;top: -2px;margin-right: 5px">&times;</span><span>CLOSE</span></button>
-                <h6 class="modal-title">Add Service</h6>
+                <h6 class="modal-title">Pick token:</h6>
             </div>
             <div class="modal-body">
-                <form method="POST" action="{{ url('/service/create') }}" data-parsley-validate="" enctype="multipart/form-data">
+                <form method="POST" action="" data-parsley-validate="" enctype="multipart/form-data">
                     {{ csrf_field() }}
+
+                    <div class="form-group">
+                        <lable>Transport</lable>
+                        <select class="form-control" required>
+                            <option value="" disabled selected></option>
+                            <option value="">Car</option>
+                            <option value="">Public</option>
+                            <option value="">Transit</option>
+                            <option value="">Cycle</option>
+                            <option value="">Walk</option>
+                        </select>
+                    </div>
+
                     <div class="form-group">
                         <lable>Name</lable>
                         <input type="text" name="name" class="form-control" required/>
                     </div>
+
                     <div class="form-group">
-                        <lable>Description</lable>
-                        <textarea style="max-width: 100%" class="form-control" rows="4" name="description"></textarea>
+                        <lable>Telephone *</lable>
+                        <input type="text" name="telephone" class="form-control" required/>
                     </div>
+
                     <div class="form-group">
-                        <lable>Token Prefix</lable>
-                        <input type="text" class="form-control" name="token_prefix" data-parsley-pattern="^[a-zA-Z]+$" data-parsley-length="[1,1]" data-parsley-pattern-message="Only alphabet allowed" data-parsley-length-message="Only one character allowed" required/>
+                        <lable>Email</lable>
+                        <input type="email" name="email" class="form-control" required/>
                     </div>
+
+                    <div class="form-group">
+                        <lable>C field 1</lable>
+                        <input type="email" name="email" class="form-control" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <lable>C field 2</lable>
+                        <input type="email" name="email" class="form-control" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <lable>C field 3</lable>
+                        <input type="email" name="email" class="form-control" required/>
+                    </div>
+
+                    <div class="form-group">
+                        <lable>Transport</lable>
+                        <select class="form-control" required>
+                            <option value="" disabled selected>Select</option>
+                            <option value="">New Account</option>
+                            <option value="">Renewal</option>
+                            <option value="">Other</option>
+                        </select>
+                    </div>
+
                     <div class="btn-class" style="margin-top: 25px">
-                        <button type="submit" class="btn btn-success">SAVE</button>
+                        <button type="submit" class="btn btn-success">Confirm</button>
                     </div>
                 </form>
             </div>
@@ -195,9 +236,22 @@
     var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-        center: {lat: 12.9716, lng: 77.5946},
-        zoom: 7
-      });
+            center: {lat: 12.9716, lng: 77.5946},
+            zoom: 7
+        });
+
+        @if($organizations)
+            @foreach($organizations as $org)
+                lat = {{ $org->lat }}
+                lang = {{ $org->lang }}
+
+                var marker = new google.maps.Marker({
+                    position: {lat: lat, lng: lang},
+                    map: map,
+                    draggable: true
+                });
+            @endforeach
+        @endif        
     }
   </script>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxe0yAiRjHEIbRijl4mh59i3a9zEA6GBI&callback=initMap"
