@@ -102,9 +102,9 @@
                                         </div>
                                         <div class="col-md-4 description-right">
                                             <ul class="list-unstyled">
-                                                <li>Open from : 9AM</li>
-                                                <li>Open until : 9AM</li>
-                                                <li>Current wait time : 34min</li>
+                                                <li>Open from : {{ $organization->start_time }}</li>
+                                                <li>Open until : {{ $organization->end_time }}</li>
+                                                <li>Current wait time : {{ $organization->default_wait_time }}</li>
                                                 <li>Distance : 4km</li>
                                             </ul>
                                             <a href="javascript:void(0)" data-toggle="modal" data-target="#addServiceModal"  class="btn btn-success">Pick token</a>
@@ -236,8 +236,8 @@
     var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 12.9716, lng: 77.5946},
-            zoom: 7
+            center: {lat: 20.5937, lng: 78.9629},
+            zoom: 5
         });
 
         @if($organizations)
