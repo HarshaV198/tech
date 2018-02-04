@@ -16,7 +16,7 @@ class FrontDeskController extends Controller
             'service_id' => $request->service,
             'board_id' => $request->board,
             'status' => $request->status,
-            'organization' => $request->user()->organization
+            'organization' => $request->user()->organization_id
         ]);
         if($frontdesk){
             $request->session()->flash('success','Fronddesk Configuration created successfully!');

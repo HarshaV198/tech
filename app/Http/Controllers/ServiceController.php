@@ -15,9 +15,9 @@ class ServiceController extends Controller
         $frontdesks = FrontDesk::orderby('created_at','desc')->get();
         $boards = DisplayBoard::orderby('created_at','desc')->get();
         if($request->user()->role_id != 1 ){
-            $services = $services->where('organization','=',$request->user()->organization);
-            $frontdesks = $frontdesks->where('organization','=',$request->user()->organization);
-            $boards = $boards->where('organization','=',$request->user()->organization);
+            $services = $services->where('organization','=',$request->user()->organization_id);
+            $frontdesks = $frontdesks->where('organization','=',$request->user()->organization_id);
+            $boards = $boards->where('organization','=',$request->user()->organization_id);
         }   
         return view('admin.organization.frontdesk',compact('services','frontdesks','boards'));
     }
@@ -27,7 +27,7 @@ class ServiceController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'token_prefix' => $request->token_prefix,
-            'organization' => $request->user()->organization
+            'organization' => $request->user()->organization_id
         ]);
         $request->session()->flash('success','Service created successfully !');
         return back();

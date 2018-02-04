@@ -11,7 +11,7 @@ class BoardController extends Controller
         $boards = DisplayBoard::orderby('created_at','desc')->get();
 
         if($request->user()->role_id != 1 ){
-            $boards = $boards->where('organization','=',$request->user()->organization);
+            $boards = $boards->where('organization','=',$request->user()->organization_id);
         }
 
         return view('admin.organization.displayboard',compact('boards'));
@@ -22,7 +22,7 @@ class BoardController extends Controller
             'name' => $request->name,
             'description' => $request->description,
             'status' => $request->status,
-            'organization' => $request->user()->organization
+            'organization' => $request->user()->organization_id
         ]);
         if($display_board){
             $request->session()->flash('success','Board created successfully !');
