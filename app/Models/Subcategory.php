@@ -18,4 +18,9 @@ class Subcategory extends Model
 
     	return $this->belongsTo('App\Models\Category', 'category_id');
     }
+
+    public function organizations(){
+        return $this->belongsToMany('App\Models\Organization','organization_subcategory','subcategory_id','organization_id');
+    }
+
 }

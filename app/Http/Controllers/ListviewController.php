@@ -12,11 +12,13 @@ class ListviewController extends Controller
     
     public function categorylistview($id){
 
-    	// $categorylist = Organization::where('category_id', $id)->first();
+		$category = Category::where('id', $id)->first();
 
-    	$category = Category::where('id', $id)->first();
+		$subcategory = Subcategory::where('id', $id)->first();
+		
+		$organizations = Organization::where('category_id',$id)->orderby('name','asc')->get();
 
-    	return view('listview', compact('categorylist', 'category'));
+    	return view('listview', compact('category','organizations','subcategory'));
     }
 
 
@@ -24,8 +26,10 @@ class ListviewController extends Controller
 
     	$subcategory = Subcategory::where('id', $id)->first();
 
-    	$category = Category::where('id', $subcategory->category_id)->first();
+		$category = Category::where('id', $subcategory->category_id)->first();
+		
+		$organizations = $subcategory->organizations;
 
-    	return view('listview', compact('category', 'subcategory'));
+    	return view('listview', compact('category','organizations','subcategory'));
     }
 }

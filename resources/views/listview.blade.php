@@ -49,20 +49,22 @@
 
                                         @foreach ($category->subcategories as $cat)
                                             @if (count($cat) !== 0)
-                                                <li><a href="javascript:void(0)">{{ $cat->name }}</a></li>
+                                                <li><a href="{{ route('listview.subcategory', $cat->id) }}">{{ $cat->name }}</a></li>
                                             @endif
                                         @endforeach
                                     </ul>
                                 </div>
                             </div>
                             <div class="col-md-8 list-wrapper">
+                                @if(isset($organizations) && count($organizations))
+                                @foreach($organizations as $organization)
                                 <div class="list-single">
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <img src="http://via.placeholder.com/150" alt="img">
+                                            <img src="{{ Storage::disk('local')->url($organization->profile_pic) }}" alt="img">
                                         </div>
                                         <div class="col-md-6 description">
-                                            <h2>Name of buisness</h2>
+                                            <h2>{{ $organization->name }}</h2>
                                             <ul class="list-inline">
                                                 <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
                                                 <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
@@ -72,15 +74,18 @@
                                             </ul>
                                             <p>
                                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                305, Sy 3/12 Uttarahalli Mn Rd + 
+                                                {{ $organization->address1.' '.$organization->address2  }}
                                             </p>
                                             <p>
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
-                                                9943254394
+                                                {{ $organization->telephone  }}
                                             </p>
                                             <p>
                                                 <i class="fa fa-info" aria-hidden="true"></i>
-                                                General Physian, Child care,Dental ,Family care
+                                                @foreach($organization->subcategories as $subcategory)
+                                                    {{ $subcategory->name . ','}}
+                                                @endforeach
+                                                
                                             </p>
                                         </div>
                                         <div class="col-md-4 description-right">
@@ -94,120 +99,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="list-single">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img src="http://via.placeholder.com/150" alt="img">
-                                        </div>
-                                        <div class="col-md-6 description">
-                                            <h2>Name of buisness</h2>
-                                            <ul class="list-inline">
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            </ul>
-                                            <p>
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                305, Sy 3/12 Uttarahalli Mn Rd + 
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                                9943254394
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-info" aria-hidden="true"></i>
-                                                General Physian, Child care,Dental ,Family care
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 description-right">
-                                            <ul class="list-unstyled">
-                                                <li>Open from : 9AM</li>
-                                                <li>Open until : 9AM</li>
-                                                <li>Current wait time : 34min</li>
-                                                <li>Distance : 4km</li>
-                                            </ul>
-                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-single">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img src="http://via.placeholder.com/150" alt="img">
-                                        </div>
-                                        <div class="col-md-6 description">
-                                            <h2>Name of buisness</h2>
-                                            <ul class="list-inline">
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            </ul>
-                                            <p>
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                305, Sy 3/12 Uttarahalli Mn Rd + 
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                                9943254394
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-info" aria-hidden="true"></i>
-                                                General Physian, Child care,Dental ,Family care
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 description-right">
-                                            <ul class="list-unstyled">
-                                                <li>Open from : 9AM</li>
-                                                <li>Open until : 9AM</li>
-                                                <li>Current wait time : 34min</li>
-                                                <li>Distance : 4km</li>
-                                            </ul>
-                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="list-single">
-                                    <div class="row">
-                                        <div class="col-md-2">
-                                            <img src="http://via.placeholder.com/150" alt="img">
-                                        </div>
-                                        <div class="col-md-6 description">
-                                            <h2>Name of buisness</h2>
-                                            <ul class="list-inline">
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            </ul>
-                                            <p>
-                                                <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                305, Sy 3/12 Uttarahalli Mn Rd + 
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                                9943254394
-                                            </p>
-                                            <p>
-                                                <i class="fa fa-info" aria-hidden="true"></i>
-                                                General Physian, Child care,Dental ,Family care
-                                            </p>
-                                        </div>
-                                        <div class="col-md-4 description-right">
-                                            <ul class="list-unstyled">
-                                                <li>Open from : 9AM</li>
-                                                <li>Open until : 9AM</li>
-                                                <li>Current wait time : 34min</li>
-                                                <li>Distance : 4km</li>
-                                            </ul>
-                                            <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
+                                @else
+                                    <p>No result found</p>
+                                @endif
                             </div>
                         </div>
                     </div>
@@ -215,46 +110,10 @@
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="wrapper">
-                                    <div class="description">
-                                        <h2>Name of buisness</h2>
-                                        <ul class="list-inline">
-                                            <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        </ul>
-                                        <p>
-                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                            305, Sy 3/12 Uttarahalli Mn Rd + 
-                                        </p>
-                                        <p>
-                                            <i class="fa fa-phone" aria-hidden="true"></i>
-                                            9943254394
-                                        </p>
-                                        <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
-                                    </div>
-                                    <div class="description">
-                                        <h2>Name of buisness</h2>
-                                        <ul class="list-inline">
-                                            <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                            <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                        </ul>
-                                        <p>
-                                            <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                            305, Sy 3/12 Uttarahalli Mn Rd + 
-                                        </p>
-                                        <p>
-                                            <i class="fa fa-phone" aria-hidden="true"></i>
-                                            9943254394
-                                        </p>
-                                        <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
-                                    </div>
-                                    <div class="description">
-                                            <h2>Name of buisness</h2>
+                                    @if(isset($organizations) && count($organizations))
+                                        @foreach($organizations as $organization)
+                                        <div class="description">
+                                            <h2>{{ $organization->name }}</h2>
                                             <ul class="list-inline">
                                                 <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
                                                 <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
@@ -264,54 +123,19 @@
                                             </ul>
                                             <p>
                                                 <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                305, Sy 3/12 Uttarahalli Mn Rd + 
+                                                {{ $organization->address1.' '.$organization->address2  }}
                                             </p>
                                             <p>
                                                 <i class="fa fa-phone" aria-hidden="true"></i>
-                                                9943254394
+                                                {{ $organization->telephone  }}
                                             </p>
                                             <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
                                         </div>
-                                        <div class="description">
-                                                <h2>Name of buisness</h2>
-                                                <ul class="list-inline">
-                                                    <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                </ul>
-                                                <p>
-                                                    <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                    305, Sy 3/12 Uttarahalli Mn Rd + 
-                                                </p>
-                                                <p>
-                                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                                    9943254394
-                                                </p>
-                                                <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
-                                            </div>
-                                            <div class="description">
-                                                    <h2>Name of buisness</h2>
-                                                    <ul class="list-inline">
-                                                        <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                        <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                        <li><i class="fa fa-star active-star" aria-hidden="true"></i></li>
-                                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                                                    </ul>
-                                                    <p>
-                                                        <i class="fa fa-map-marker" aria-hidden="true"></i>
-                                                        305, Sy 3/12 Uttarahalli Mn Rd + 
-                                                    </p>
-                                                    <p>
-                                                        <i class="fa fa-phone" aria-hidden="true"></i>
-                                                        9943254394
-                                                    </p>
-                                                    <a href="javascript:void(0)" class="btn btn-success">Pick token</a>
-                                                </div>
+                                        @endforeach
+                                    @else
+                                        <p>No result found</p>
+                                    @endif
                                 </div>
-                                
                             </div>
                             <div class="col-md-9">
                                 <div class="map-wrapper">

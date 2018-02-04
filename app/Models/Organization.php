@@ -24,6 +24,6 @@ class Organization extends Model
     }
 
     public function subcategories(){
-        return $this->belongsToMany('App\Models\Subcategory');
+        return $this->belongsToMany('App\Models\Subcategory','organization_subcategory','organization_id','subcategory_id');
     }
 }
