@@ -44,15 +44,14 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="category-wrapper">
-                                    <a href="javascript:void(0)">Health</a>
+                                    <a href="javascript:void(0)">{{ $category->name }}</a>
                                     <ul class="list-unstyled">
-                                        <li><a href="javascript:void(0)">General Physian</a></li>
-                                        <li><a href="javascript:void(0)">Gynacologist</a></li>
-                                        <li><a href="javascript:void(0)">Pediatritian</a></li>
-                                        <li><a href="javascript:void(0)">General Physian</a></li>
-                                        <li><a href="javascript:void(0)">General Physian</a></li>
-                                        <li><a href="javascript:void(0)">General Physian</a></li>
-                                        <li><a href="javascript:void(0)">General Physian</a></li>
+
+                                        @foreach ($category->subcategories as $cat)
+                                            @if (count($cat) !== 0)
+                                                <li><a href="javascript:void(0)">{{ $cat->name }}</a></li>
+                                            @endif
+                                        @endforeach
                                     </ul>
                                 </div>
                             </div>
