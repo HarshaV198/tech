@@ -95,7 +95,7 @@
                                             <p>
                                                 <i class="fa fa-info" aria-hidden="true"></i>
                                                 @foreach($organization->subcategories as $subcategory)
-                                                    {{ $subcategory->name . ','}}
+                                                    {{ $subcategory->name}} @if(!$loop->last){{ ',' }}@endif
                                                 @endforeach
                                                 
                                             </p>
