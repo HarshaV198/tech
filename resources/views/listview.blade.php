@@ -102,8 +102,14 @@
                                         </div>
                                         <div class="col-md-4 description-right">
                                             <ul class="list-unstyled">
-                                                <li>Open from : {{ $organization->start_time }}</li>
-                                                <li>Open until : {{ $organization->end_time }}</li>
+                                                
+                                                @if ($organization->start_time && $organization->end_time)
+                                                    <li>Open from : {{ $organization->start_time }}</li>
+                                                    <li>Open until : {{ $organization->end_time }}</li>
+                                                @else
+                                                    <li>Open: 24 hrs</li>
+                                                @endif
+                                                
                                                 <li>Current wait time : {{ $organization->default_wait_time }}</li>
                                                 <li>Distance : 4km</li>
                                             </ul>
