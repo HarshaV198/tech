@@ -23,7 +23,7 @@
 					            </tr>
 					            <tr>
 					              <td>{{ Auth::user()->name}}</td>
-					              <td>{{ Auth::user()->organization}}</td>
+					              <td>{{ Auth::user()->organization->name}}</td>
 					              <td>{{ Auth::user()->email}}</td>
 					              <td>{{ config('app.role')[Auth::user()->role_id] }}</td>
 					              <td>

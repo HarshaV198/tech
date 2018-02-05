@@ -16,8 +16,6 @@
 	      </ol>
 			</section>
 			
-			{{ Auth::user()->Organization }}
-
 	    <section class="content">
 	    	<div class="row">
 	    		<div class="col-xs-12">
@@ -58,7 +56,7 @@
 
 						                  <td>{{ $staff->email }}</td>
 
-						                  <td>{{ $staff->organization }}</td>
+						                  <td>{{ $staff->organization->name }}</td>
 
 						                  <td>{{ config('app.role')[$staff->role_id] }}</td>
 

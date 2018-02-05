@@ -40,14 +40,14 @@
 
 				                	@foreach ($users as $user)
 
-				                		@if ($user->organization == 'wism')
+				                		@if ($user->organization->name == 'wism')
 
 						                <tr>
 						                  <td>{{ $user->name }}</td>
 
 						                  <td>{{ $user->email }}</td>
 
-						                  <td>{{ $user->organization }}</td>
+						                  <td>{{ $user->organization->name }}</td>
 
 						                  <td>{{ config('app.role')[$user->role_id] }}</td>
 

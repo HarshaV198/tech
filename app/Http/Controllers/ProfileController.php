@@ -33,20 +33,15 @@ class ProfileController extends Controller
 
     public function update(Request $request, $id) {
 
-    	// return $request->all();
-
-
     	$this->validate($request, [
     		
     		'name' => 'required|string',
-    		'organization' => 'required|string',
     		'email' => 'required|email|string',
     	]);
 
     	$user = User::find($id);
 
     	$user->name = $request->name;
-    	$user->organization = $request->organization;
     	$user->email = $request->email;
     	$user->updated_at = date('Y-m-d H:i:s');
     	$user->save();

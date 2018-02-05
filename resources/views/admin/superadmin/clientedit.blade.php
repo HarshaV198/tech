@@ -50,7 +50,7 @@
 				                  <label for="organization" class="col-sm-2 control-label">Organization</label>
 
 				                  <div class="col-sm-10">
-				                    <input type="text" name="organization" class="form-control" id="organization" placeholder="Organization" value="{{ $user->organization }}" required>
+				                    <input type="text" name="organization" class="form-control" id="organization" placeholder="Organization" value="{{ $user->organization->name }}" required>
 
 				                    @if ($errors->has('organization'))
 	                                    <span class="help-block">

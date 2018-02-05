@@ -46,20 +46,6 @@
 				                  </div>
 				                </div>
 
-				                <div class="form-group {{ $errors->has('organization') ? ' has-error' : '' }}">
-				                  <label for="organization" class="col-sm-2 control-label">Organization</label>
-
-				                  <div class="col-sm-10">
-				                    <input type="text" name="organization" class="form-control" id="organization" placeholder="Organization" value="{{ $staff->organization }}" required>
-
-				                    @if ($errors->has('organization'))
-	                                    <span class="help-block">
-	                                        <strong>{{ $errors->first('organization') }}</strong>
-	                                    </span>
-	                                @endif
-				                  </div>
-				                </div>
-
 				                <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
 				                  <label for="email" class="col-sm-2 control-label">Email</label>
 
