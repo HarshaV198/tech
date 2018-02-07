@@ -303,16 +303,16 @@ async defer></script>-->
                 var distance = google.maps.geometry.spherical.computeDistanceBetween(Mylatlng, Orglatlng) / radius;
 
                 if (distance <= 20) {
-                    createMarker(Orglatlng, icn, contentString);
+                    createMarker(Orglatlng, icn, contentString, distance);
                 }   
             @endforeach
         @endif             
     }
 
-    function createMarker(latlng, icn, name){
+    function createMarker(latlng, icn, name, distance){
 
         var infowindow = new google.maps.InfoWindow({
-          content: name
+          content: '<h5> <b>Organization:</b> <i>'+ name + '</i><br> <b>Distance:</b> <i>' + distance.toFixed() + ' km<i></br>'  +'</h5>'
         });
 
         var marker = new google.maps.Marker({
