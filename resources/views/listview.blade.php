@@ -319,7 +319,7 @@ async defer></script>-->
             position: latlng,
             map: map,
             icon: icn,
-            scrollwheel: false
+            animation: google.maps.Animation.DROP
         });
 
         marker.addListener('click', function() {
