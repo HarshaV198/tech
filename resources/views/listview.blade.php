@@ -238,7 +238,7 @@
         </div>
     </div>
 </div>
-<script>
+<!--<script>
     var map;
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -259,16 +259,85 @@
             @endforeach
         @endif        
     }
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxe0yAiRjHEIbRijl4mh59i3a9zEA6GBI&callback=initMap"
+async defer></script>-->
+
+
+<script>
+    var map;
+
+    function initMap() {
+
+        var Mylat = {{ $data->latitude}}
+        var Mylng = {{ $data->longitude}}
+
+        var Mylatlng = new google.maps.LatLng(Mylat, Mylng);
+
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: Mylatlng,
+            zoom: 12
+        });
+
+        var marker = new google.maps.Marker({
+            position: Mylatlng,
+            map: map,
+            title: 'You are here!'                
+        }); 
+
+        nearbySearch(Mylatlng);          
+    }
+
+    function nearbySearch(Mylatlng){
+        radius = 1000;       
+
+        @if($organizations)
+            @foreach($organizations as $org)
+                lat = {{ $org->lat }}
+                lang = {{ $org->lang }}
+
+                var contentString = "{{ $org->name }}";
+                var Orglatlng = new google.maps.LatLng(lat, lang);
+                icn = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';                    
+
+                var distance = google.maps.geometry.spherical.computeDistanceBetween(Mylatlng, Orglatlng) / radius;
+
+                if (distance <= 20) {
+                    createMarker(Orglatlng, icn, contentString);
+                }   
+            @endforeach
+        @endif             
+    }
+
+    function createMarker(latlng, icn, name){
+
+        var infowindow = new google.maps.InfoWindow({
+          content: name
+        });
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            icon: icn,
+            scrollwheel: false
+        });
+
+        marker.addListener('click', function() {
+          infowindow.open(map, marker);
+        });
+    }
+</script>
+
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxe0yAiRjHEIbRijl4mh59i3a9zEA6GBI&libraries=geometry&callback=initMap" async defer>
   </script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDxe0yAiRjHEIbRijl4mh59i3a9zEA6GBI&callback=initMap"
-  async defer></script>
-  <script>
-    $(document).ready(function(){
-        $(".map-tab").on('shown.bs.tab', function(){
-            var newmapcenter = map.getCenter(); 
-            google.maps.event.trigger(map, 'resize');
-            map.setCenter(newmapcenter);
-          });
-    });
-  </script>
+
+<script>
+$(document).ready(function(){
+    $(".map-tab").on('shown.bs.tab', function(){
+        var newmapcenter = map.getCenter(); 
+        google.maps.event.trigger(map, 'resize');
+        map.setCenter(newmapcenter);
+      });
+});
+</script>
 @endsection

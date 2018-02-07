@@ -12,17 +12,28 @@ class ListviewController extends Controller
     
     public function categorylistview($id){
 
+    	// $ip = \Request::ip();
+
+    	$ip = '122.172.98.132';
+    	$data = \Location::get($ip);
+
 		$category = Category::where('id', $id)->first();
 
 		$subcategory = Subcategory::where('id', $id)->first();
 		
 		$organizations = Organization::where('category_id',$id)->orderby('name','asc')->get();
 
-    	return view('listview', compact('category','organizations','subcategory'));
+    	return view('listview', compact('category','organizations','subcategory', 'data'));
     }
 
 
     public function subcategorylistview($id) {
+
+    	// $ip = \Request::ip();
+
+    	$ip = '122.172.98.132';
+    	$data = \Location::get($ip);
+
 
     	$subcategory = Subcategory::where('id', $id)->first();
 
@@ -30,6 +41,6 @@ class ListviewController extends Controller
 		
 		$organizations = $subcategory->organizations;
 
-    	return view('listview', compact('category','organizations','subcategory'));
+    	return view('listview', compact('category','organizations','subcategory', 'data'));
     }
 }
