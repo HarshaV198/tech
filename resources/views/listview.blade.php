@@ -312,7 +312,9 @@ async defer></script>-->
     function createMarker(latlng, icn, name, distance){
 
         var infowindow = new google.maps.InfoWindow({
-          content: '<h5> <b>Organization:</b> <i>'+ name + '</i><br> <b>Distance:</b> <i>' + distance.toFixed() + ' km<i></br>'  +'</h5>'
+          content: '<h5> <b>Organization:</b> <i>'+ name + 
+                   '</i><br> <b>Distance:</b> <i>' + distance.toFixed() + 
+                   ' km<i></br>'  +'</h5>'
         });
 
         var marker = new google.maps.Marker({
