@@ -33,7 +33,9 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
+                        {{-- {{ config('app.name', 'Laravel') }} --}}
+                        <img src="{{ asset('img/wism_logo.png')}}" style="margin-top: -13px;">
+
                     </a>
                 </div>
 
