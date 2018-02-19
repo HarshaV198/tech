@@ -276,6 +276,7 @@ async defer></script>-->
 
         map = new google.maps.Map(document.getElementById('map'), {
             center: Mylatlng,
+            gestureHandling: 'greedy',
             zoom: 12
         });
 
