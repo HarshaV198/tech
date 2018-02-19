@@ -56,7 +56,7 @@
                         <div class="row">
                             <div class="col-md-2">
                                 <div class="category-wrapper">
-                                    <a href="javascript:void(0)">{{ $category->name }}</a>
+                                    <a href="{{ route('listview.category', $category->id) }}">{{ $category->name }}</a>
                                     <ul class="list-unstyled">
 
                                         @foreach ($category->subcategories as $cat)
