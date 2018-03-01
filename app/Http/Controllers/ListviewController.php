@@ -43,4 +43,19 @@ class ListviewController extends Controller
 
     	return view('listview', compact('category','organizations','subcategory', 'data'));
     }
+
+    public function search(Request $request) {
+
+        $ip = '122.172.98.132';
+        $data = \Location::get($ip);
+
+        $searchData = $request->searchData;
+
+        if($searchData) {
+
+            $organizations = Organization::where('name', 'like', '%'. $searchData .'%')->get();
+            return view('search', compact('organizations', 'data'));
+        } 
+        return back();        
+    }
 }

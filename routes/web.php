@@ -23,7 +23,7 @@ Route::get('/listview/subcategory/{id}', 'ListviewController@subcategorylistview
 // Route::get('/list/view',function(){
 //     return view('listview');
 // });
-
+Route::get('search', 'ListviewController@search')->name('search');
 
 
 Auth::routes();

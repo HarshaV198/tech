@@ -18,7 +18,7 @@
             <div class="col-md-12">
                 <ul class="list-inline">
                     <li>
-                        <form action="" class="navbar-form navbar-left">
+                        <form action="{{ route('search') }}" class="navbar-form navbar-left">
                             <div class="form-group">
                                 <input type="text" name="searchData" class="form-control" placeholder="Search for anything">
                             </div>
