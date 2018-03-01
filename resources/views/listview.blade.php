@@ -18,7 +18,12 @@
             <div class="col-md-12">
                 <ul class="list-inline">
                     <li>
-                        <input type="text" class="form-control" placeholder="Search for anything">
+                        <form action="" class="navbar-form navbar-left">
+                            <div class="form-group">
+                                <input type="text" name="searchData" class="form-control" placeholder="Search for anything">
+                            </div>
+                            <button type="submit" class="btn btn-success"> Go </button>
+                        </form>
                     </li>
                     <li>
                         <select class="form-control">
