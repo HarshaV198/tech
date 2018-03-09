@@ -78,7 +78,7 @@
                                 <div class="list-single">
                                     <div class="row">
                                         <div class="col-md-2">
-                                            <img src="{{ Storage::disk('local')->url($organization->profile_pic) }}" alt="img">
+                                            <img src="{{ Storage::disk('local')->url($organization->premium_banner) }}" alt="img">
                                         </div>
                                         <div class="col-md-6 description">
                                             <h2>{{ $organization->name }}</h2>
